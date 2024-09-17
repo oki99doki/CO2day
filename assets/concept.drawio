@@ -1,0 +1,43 @@
+<mxfile host="65bd71144e">
+    <diagram id="IlFX4f9ja2N9C_9pvkQi" name="Page-1">
+        <mxGraphModel dx="791" dy="734" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="9" value="One-to-One" style="edgeStyle=none;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="2" target="3">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="One-to-Many" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="2" target="13">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="User&lt;br&gt;&lt;br&gt;id&lt;br&gt;name&lt;br&gt;location" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="90" y="170" width="120" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="HomeEnergy&lt;br&gt;&lt;br&gt;GasConsumed&lt;br&gt;ElectricityConsumed" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="340" y="170" width="120" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="Categories&lt;br&gt;&lt;br&gt;List of Things --&amp;gt; Examples w. CO2 foorprint&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="90" y="370" width="130" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="Transportation&lt;br&gt;&lt;br&gt;Cars&lt;br&gt;&lt;br&gt;NoCars, milesPerYear&lt;br&gt;mpg&lt;br&gt;&lt;br&gt;Flight&lt;br&gt;Distance&lt;br&gt;Class" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="310" y="370" width="120" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="Assumptions:&lt;br&gt;User can have 1 home&lt;br&gt;User can have multiple cars&lt;br&gt;User can have multiple flights&lt;br&gt;" style="text;html=1;align=center;verticalAlign=center;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="300" y="55" width="180" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="Consumables&lt;br&gt;&lt;br&gt;Type: Food, Waste&lt;br&gt;&lt;br&gt;NoFoods, amountPerYear&lt;br&gt;CO2Each&lt;br&gt;&lt;br&gt;Material&lt;br&gt;amountPerYear&lt;br&gt;CO2Each" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="500" y="590" width="120" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="Energy Saving Tips&lt;br&gt;&lt;br&gt;..." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="90" y="570" width="120" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="Air Travel&lt;br&gt;&lt;br&gt;Flight&lt;br&gt;Distance&lt;br&gt;Class" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="510" y="320" width="120" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="Functions in backend for cal.&lt;br&gt;send result back as json&lt;br&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="470" y="150" width="180" height="40" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
