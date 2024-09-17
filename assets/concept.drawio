@@ -1,41 +1,106 @@
 <mxfile host="65bd71144e">
     <diagram id="IlFX4f9ja2N9C_9pvkQi" name="Page-1">
-        <mxGraphModel dx="791" dy="734" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1001" dy="591" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="9" value="One-to-One" style="edgeStyle=none;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="2" target="3">
+                <mxCell id="9" value="One-to-One" style="edgeStyle=none;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="1" source="2" target="3" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="10" value="One-to-Many" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="2" target="13">
+                <mxCell id="10" value="One-to-Many" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="2" target="13" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="2" value="User&lt;br&gt;&lt;br&gt;id&lt;br&gt;name&lt;br&gt;location" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="31" style="edgeStyle=none;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="2" target="29">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="One-to-One" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="31">
+                    <mxGeometry x="0.1369" y="1" relative="1" as="geometry">
+                        <mxPoint x="1" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="2" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;&lt;br&gt;name&lt;br&gt;&lt;br&gt;location&lt;br&gt;homeType&lt;br&gt;homeSize" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="90" y="170" width="120" height="120" as="geometry"/>
                 </mxCell>
-                <mxCell id="3" value="HomeEnergy&lt;br&gt;&lt;br&gt;GasConsumed&lt;br&gt;ElectricityConsumed" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="340" y="170" width="120" height="120" as="geometry"/>
+                <mxCell id="3" value="&lt;b&gt;Home&lt;/b&gt;&lt;br&gt;&lt;br&gt;electricityCost&lt;br&gt;gasCost&lt;br&gt;&lt;br&gt;electricityDollars&lt;br&gt;gasDollars&lt;br&gt;&lt;br&gt;electricityConsumed&lt;br&gt;gasConsumed&lt;br&gt;&lt;br&gt;electricityCo2Produced&lt;br&gt;gasCo2Produced" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="330" y="65" width="140" height="210" as="geometry"/>
                 </mxCell>
-                <mxCell id="6" value="Categories&lt;br&gt;&lt;br&gt;List of Things --&amp;gt; Examples w. CO2 foorprint&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="90" y="370" width="130" height="140" as="geometry"/>
+                <mxCell id="6" value="Categories&lt;br&gt;&lt;br&gt;List of Things --&amp;gt; Examples w. CO2 foorprint&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="850" width="130" height="140" as="geometry"/>
                 </mxCell>
-                <mxCell id="7" value="Transportation&lt;br&gt;&lt;br&gt;Cars&lt;br&gt;&lt;br&gt;NoCars, milesPerYear&lt;br&gt;mpg&lt;br&gt;&lt;br&gt;Flight&lt;br&gt;Distance&lt;br&gt;Class" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="310" y="370" width="120" height="200" as="geometry"/>
+                <mxCell id="7" value="Transportation&lt;br&gt;&lt;br&gt;Cars&lt;br&gt;&lt;br&gt;NoCars, milesPerYear&lt;br&gt;mpg&lt;br&gt;&lt;br&gt;Flight&lt;br&gt;Distance&lt;br&gt;Class" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="370" y="850" width="120" height="200" as="geometry"/>
                 </mxCell>
-                <mxCell id="8" value="Assumptions:&lt;br&gt;User can have 1 home&lt;br&gt;User can have multiple cars&lt;br&gt;User can have multiple flights&lt;br&gt;" style="text;html=1;align=center;verticalAlign=center;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-                    <mxGeometry x="300" y="55" width="180" height="70" as="geometry"/>
+                <mxCell id="8" value="Assumptions:&lt;br&gt;User can have 1 home&lt;br&gt;User can have multiple cars&lt;br&gt;User can have multiple flights&lt;br&gt;" style="text;html=1;align=center;verticalAlign=center;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="560" width="180" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="11" value="Consumables&lt;br&gt;&lt;br&gt;Type: Food, Waste&lt;br&gt;&lt;br&gt;NoFoods, amountPerYear&lt;br&gt;CO2Each&lt;br&gt;&lt;br&gt;Material&lt;br&gt;amountPerYear&lt;br&gt;CO2Each" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="500" y="590" width="120" height="200" as="geometry"/>
+                <mxCell id="11" value="Consumables&lt;br&gt;&lt;br&gt;Type: Food, Waste&lt;br&gt;&lt;br&gt;NoFoods, amountPerYear&lt;br&gt;CO2Each&lt;br&gt;&lt;br&gt;Material&lt;br&gt;amountPerYear&lt;br&gt;CO2Each" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="515" y="850" width="120" height="200" as="geometry"/>
                 </mxCell>
-                <mxCell id="12" value="Energy Saving Tips&lt;br&gt;&lt;br&gt;..." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="90" y="570" width="120" height="130" as="geometry"/>
+                <mxCell id="12" value="Energy Saving Tips&lt;br&gt;&lt;br&gt;..." style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="220" y="855" width="120" height="130" as="geometry"/>
                 </mxCell>
-                <mxCell id="13" value="Air Travel&lt;br&gt;&lt;br&gt;Flight&lt;br&gt;Distance&lt;br&gt;Class" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="510" y="320" width="120" height="200" as="geometry"/>
+                <mxCell id="13" value="&lt;b&gt;AirTravel&lt;/b&gt;&lt;br&gt;&lt;br&gt;Flight&lt;br&gt;Destination&lt;br&gt;&lt;br&gt;Distance&lt;br&gt;&lt;br&gt;Aircraft&lt;br&gt;Class&lt;br&gt;&lt;br&gt;Co2PerMile&lt;br&gt;milesTraveled&lt;br&gt;&lt;br&gt;airTravelCo2Produced" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="485" y="310" width="130" height="210" as="geometry"/>
                 </mxCell>
-                <mxCell id="14" value="Functions in backend for cal.&lt;br&gt;send result back as json&lt;br&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-                    <mxGeometry x="470" y="150" width="180" height="40" as="geometry"/>
+                <mxCell id="14" value="Functions in backend for cal.&lt;br&gt;send result back as json&lt;br&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="665" y="240" width="180" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="Parameters (location-dependent)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="470" y="100" width="200" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="Input (specific to each User's Home)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="470" y="140" width="220" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="Intermediary Calc. Result" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="475" y="185" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="Output (result in kg/year)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="475" y="230" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="required" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="200" y="200" width="70" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="Info" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="210" y="245" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="Info" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="620" y="340" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="Input (specific to each AirTravel)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="615" y="380" width="190" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="Parameters (aircraft-/ class-dependent)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="615" y="420" width="230" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="Intermediary Calc. Result" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="615" y="460" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="Output (result in kg/year)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="620" y="490" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="&lt;b&gt;Car&lt;/b&gt;&lt;br&gt;&lt;br&gt;make&lt;br&gt;model&lt;br&gt;year&lt;br&gt;&lt;br&gt;milesPerYear&lt;br&gt;mpg&lt;br&gt;maintenanceStatus&lt;br&gt;&lt;br&gt;Co2PerMile&lt;br&gt;&lt;br&gt;carCo2Produced" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="230" y="360" width="120" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" value="Info" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="350" y="400" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" value="Parameters" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="350" y="460" width="90" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="Intermed. Calc. Result" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="350" y="500" width="140" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="36" value="Output (result in kg/year)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="350" y="530" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="&lt;b&gt;BACKLOG&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=center;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="50" y="780" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="&lt;b&gt;Output&amp;nbsp; KPIs&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=center;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="240" y="610" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" value="per User: total Co2Produced = sum of all 3/4 components)&lt;br&gt;&lt;br&gt;&lt;br&gt;Charts:&lt;br&gt;Pie Chart for each User with" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="250" y="640" width="330" height="90" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
