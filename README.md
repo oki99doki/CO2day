@@ -71,10 +71,47 @@ Transportation: no. of vehicles, miles driven and mpg for each, no. of air trave
 
 to be added.
 
+**User Routes**
+
+    GET /users: Retrieve a list of all users.
+    
+    POST /users: Create a new user.
+    
+    GET /users/<id>: Retrieve a specific user by ID.
+    
+    PATCH /users/<id>: Partially update a specific user by ID.
+    
+    DELETE /users/<id>: Delete a specific user by ID.
+
+**House Routes**
+    
+    GET /houses: Retrieve a list of all houses.
+
+    POST /houses: Create a new house.
+    
+    GET /houses/<id>: Retrieve a specific house by ID.
+    
+    PATCH /houses/<id>: Partially update a specific house by ID.
+    
+    DELETE /houses/<id>: Delete a specific house by ID.
+
+**AirTravel Routes**
+    
+    GET /airtravels: Retrieve a list of all airtravels.
+    
+    POST /airtravels: Create a new airtravel.
+    
+    GET /airtravels/<id>: Retrieve a specific airtravel by ID.
+    
+    PATCH /airtravels/<id>: Partially update a specific airtravel by ID.
+    
+    DELETE /airtravels/<id>: Delete a specific airtravel by ID.
 
 
 ## Kanban Board
 
+https://trello.com/b/WCN6PLp7/phase-v-kanban
+Need to add image.
 
 
 ## Constraints (optional)
