@@ -54,7 +54,7 @@ to be added.
 
 ## Schema
 
-to be added.
+![SchemaUpdatedP4](https://github.com/user-attachments/assets/34dd71d7-b723-46d0-a291-6898a4dfb584)
 
 Should include the following Models:
 
