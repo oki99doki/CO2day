@@ -54,7 +54,7 @@ to be added.
 
 ## Schema
 
-![SchemaUpdatedP4](https://github.com/user-attachments/assets/34dd71d7-b723-46d0-a291-6898a4dfb584)
+![SchemaConcept](https://github.com/oki99doki/CO2day/blob/main/assets/concept.png)
 
 Should include the following Models:
 
