@@ -39,7 +39,7 @@ Energy Saving Tips
 12.	A KPI dashboard graphically shows the amount for each category (e.g. pie chart with relative size indicating the fractions and size+ numeric value providing total, or another chart or set of charts comparing to other users or avg. by country
 
 
-### Stretch Goals
+## Stretch Goals
 
 1.	Add list of energy saving tips to menu with corresponding date/ info on site
 2.	Add Food consumption and Waste into accounting scheme
@@ -47,9 +47,9 @@ Energy Saving Tips
 4.	Allow user to persist data and enter multiple data sets so that relative changes over time can be shown numerically or displayed graphically indicating progress based on changes in user behavior
 
 
-### React Tree Diagram
+## React Tree Diagram
 
-to be added.
+![ReactTree](https://github.com/oki99doki/CO2day/blob/main/assets/reactTree.png)
 
 
 ## Schema
@@ -69,8 +69,6 @@ Transportation: no. of vehicles, miles driven and mpg for each, no. of air trave
 
 ## API Routes
 
-to be added.
-
 **User Routes**
 
     GET /users: Retrieve a list of all users.
@@ -82,6 +80,12 @@ to be added.
     PATCH /users/<id>: Partially update a specific user by ID.
     
     DELETE /users/<id>: Delete a specific user by ID.
+
+**Location Routes**
+    
+    GET /locations: Retrieve a list of all locations.
+
+    POST /locations: Create a new location.
 
 **House Routes**
     
@@ -95,17 +99,41 @@ to be added.
     
     DELETE /houses/<id>: Delete a specific house by ID.
 
-**AirTravel Routes**
+**Flight Routes**
     
-    GET /airtravels: Retrieve a list of all airtravels.
+    GET /flights: Retrieve a list of all flights.
     
-    POST /airtravels: Create a new airtravel.
+    POST /flights: Create a new flight.
     
-    GET /airtravels/<id>: Retrieve a specific airtravel by ID.
+    GET /flights/<id>: Retrieve a specific flight by ID.
     
-    PATCH /airtravels/<id>: Partially update a specific airtravel by ID.
+    PATCH /flights/<id>: Partially update a specific flight by ID.
     
-    DELETE /airtravels/<id>: Delete a specific airtravel by ID.
+    DELETE /flights/<id>: Delete a specific flight by ID.
+
+**Aircraft Routes**
+    
+    GET /aircrafts: Retrieve a list of all aircrafts.
+    
+    POST /aircrafts: Create a new aircraft.
+    
+    GET /aircrafts/<id>: Retrieve a specific aircraft by ID.
+    
+    PATCH /aircrafts/<id>: Partially update a specific aircraft by ID.
+    
+    DELETE /aircrafts/<id>: Delete a specific aircraft by ID.
+
+**Car Routes**
+    
+    GET /cars: Retrieve a list of all cars.
+    
+    POST /cars: Create a new car.
+    
+    GET /cars/<id>: Retrieve a specific car by ID.
+    
+    PATCH /cars/<id>: Partially update a specific car by ID.
+    
+    DELETE /cars/<id>: Delete a specific car by ID.
 
 
 ## Kanban Board
