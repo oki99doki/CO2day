@@ -33,18 +33,15 @@ Energy Saving Tips
 6.	Users can click on other profiles page to view details regarding CO2 footprint
 7.	Search box allows user to search within the other profiles menu
 8.	User can look at inventory page to view list of activities and their associated CO2 footprints for reference)
-9.	User can look at example by country to get overview of average values for different countries (total and per capita)
-10.	User can create own profile and fill in required information in input table based on categories (home energy, transportation, etc.)
-11.	The app will provide instantaneous output about CO2 footprint based on user provided values
-12.	A KPI dashboard graphically shows the amount for each category (e.g. pie chart with relative size indicating the fractions and size+ numeric value providing total, or another chart or set of charts comparing to other users or avg. by country
+9.	User can create own profile and fill in required information in input table based on categories (home energy, transportation, etc.)
+10.	The app will provide instantaneous output about CO2 footprint based on user provided values
 
 
 ## Stretch Goals
 
-1.	Add list of energy saving tips to menu with corresponding date/ info on site
-2.	Add Food consumption and Waste into accounting scheme
-3.	Add multiple charts and more advanced KPIs
-4.	Allow user to persist data and enter multiple data sets so that relative changes over time can be shown numerically or displayed graphically indicating progress based on changes in user behavior
+1.	A KPI dashboard graphically shows the amount for each category (e.g. pie chart with relative size indicating the fractions and size+ numeric value providing total, or another chart or set of charts comparing to other users or avg. by country
+2.	Add multiple charts and more advanced KPIs
+3.	Allow user to persist data and enter multiple data sets so that relative changes over time can be shown numerically or displayed graphically indicating progress based on changes in user behavior
 
 
 ## React Tree Diagram
@@ -115,7 +112,8 @@ Energy Saving Tips
 ## Kanban Board
 
 https://trello.com/b/WCN6PLp7/phase-v-kanban
-Need to add image.
+
+![TrelloBoard](https://github.com/oki99doki/CO2day/blob/main/assets/TrelloBoard.png)
 
 
 ## Constraints (optional)
