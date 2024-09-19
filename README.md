@@ -56,15 +56,7 @@ Energy Saving Tips
 
 ![SchemaConcept](https://github.com/oki99doki/CO2day/blob/main/assets/concept.png)
 
-Should include the following Models:
-
-User (=Other Users and self/ new user)
-
-Categories: Home Energy, Transportation, etc.
-
-Home Energy: Gas, electricity, others
-
-Transportation: no. of vehicles, miles driven and mpg for each, no. of air travels, class and miles for each
+![VariableNames](https://github.com/oki99doki/CO2day/blob/main/assets/variableNames.png)
 
 
 ## API Routes
@@ -85,8 +77,6 @@ Transportation: no. of vehicles, miles driven and mpg for each, no. of air trave
     
     GET /locations: Retrieve a list of all locations.
 
-    POST /locations: Create a new location.
-
 **House Routes**
     
     GET /houses: Retrieve a list of all houses.
@@ -94,8 +84,6 @@ Transportation: no. of vehicles, miles driven and mpg for each, no. of air trave
     POST /houses: Create a new house.
     
     GET /houses/<id>: Retrieve a specific house by ID.
-    
-    PATCH /houses/<id>: Partially update a specific house by ID.
     
     DELETE /houses/<id>: Delete a specific house by ID.
 
@@ -107,21 +95,11 @@ Transportation: no. of vehicles, miles driven and mpg for each, no. of air trave
     
     GET /flights/<id>: Retrieve a specific flight by ID.
     
-    PATCH /flights/<id>: Partially update a specific flight by ID.
-    
     DELETE /flights/<id>: Delete a specific flight by ID.
 
 **Aircraft Routes**
     
     GET /aircrafts: Retrieve a list of all aircrafts.
-    
-    POST /aircrafts: Create a new aircraft.
-    
-    GET /aircrafts/<id>: Retrieve a specific aircraft by ID.
-    
-    PATCH /aircrafts/<id>: Partially update a specific aircraft by ID.
-    
-    DELETE /aircrafts/<id>: Delete a specific aircraft by ID.
 
 **Car Routes**
     
@@ -130,8 +108,6 @@ Transportation: no. of vehicles, miles driven and mpg for each, no. of air trave
     POST /cars: Create a new car.
     
     GET /cars/<id>: Retrieve a specific car by ID.
-    
-    PATCH /cars/<id>: Partially update a specific car by ID.
     
     DELETE /cars/<id>: Delete a specific car by ID.
 
