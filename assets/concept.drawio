@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="IlFX4f9ja2N9C_9pvkQi" name="Page-1">
-        <mxGraphModel dx="722" dy="587" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="612" dy="507" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -21,7 +21,7 @@
                 <mxCell id="60" style="edgeStyle=none;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="1" source="2" target="29" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="82" value="One-to-One&lt;br&gt;or&lt;br&gt;One-to-Many" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="60">
+                <mxCell id="82" value="One-to-One&lt;br&gt;or&lt;br&gt;One-to-Many" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="60" vertex="1" connectable="0">
                     <mxGeometry x="-0.1942" y="1" relative="1" as="geometry">
                         <mxPoint as="offset"/>
                     </mxGeometry>
