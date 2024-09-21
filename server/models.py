@@ -5,6 +5,9 @@
 
 
 from flask_sqlalchemy import SQLAlchemy
+
+from sqlalchemy_serializer import SerializerMixin
+
 from sqlalchemy import MetaData
 
 
@@ -25,7 +28,7 @@ db = SQLAlchemy(metadata=metadata)
 #     userName = db.Column(db.String)
 
 
-class Location(db.Model):
+class Location(db.Model, SerializerMixin):
     __tablename__ = 'locations'
 
     id = db.Column(db.Integer, primary_key = True)
@@ -44,7 +47,7 @@ class Location(db.Model):
 #     pass
 
 
-class Car(db.Model):
+class Car(db.Model, SerializerMixin):
     __tablename__ = 'cars'
 
     id = db.Column(db.Integer, primary_key = True)

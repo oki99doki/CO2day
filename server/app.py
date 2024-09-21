@@ -13,11 +13,16 @@
 
 
 from flask import Flask
+
+from flask import request, make_response
+
 from flask_migrate import Migrate
 
 from models import db
 
 from models import Location, Car
+
+import ipdb
 
 # create a Flask application object
 app = Flask(__name__)
@@ -42,7 +47,64 @@ def index():
     return '<h1>Project Server</h1>'
 
 
+@app.route('/cars')
+def cars():
 
+    #ipdb.set_trace()
+    # car = Car.query.first()
+
+    # #car_dict = [car.to_dict() for car in cars]
+
+    # if car:
+    #     body = {'id': car.id,
+    #         'maken': car.make,
+    #         'model': car.model,
+    #         'year': car.year,
+    #         'milesPerYear': car.milesPerYear,
+    #         'mpg': car.mpg,
+    #         'co2Produced': car.co2Produced
+    #         }
+    #     status = 200
+    # else:
+    #     body = {'message': f'Car {id} not found.'}
+    #     status = 404
+    #return make_response(body, status)
+
+    all_cars = Car.query.all()
+
+    if all_cars:
+        car_dicts = []
+        for car in all_cars:
+            # Compute CO2 produced per mile
+            co2_per_mile = compute_co2_per_mile(car.mpg)
+            # You can also compute total CO2 for the year if needed
+            total_co2 = co2_per_mile * car.milesPerYear
+
+            # Create a dictionary for each car
+            car_dict = {
+                'id': car.id,
+                'make': car.make,
+                'model': car.model,
+                'year': car.year,
+                'milesPerYear': car.milesPerYear,
+                'mpg': car.mpg,
+                'co2Produced': total_co2  # You can choose to save co2_per_mile if needed
+            }
+            car_dicts.append(car_dict)
+
+        body = {'cars': car_dicts}  # List of all car dictionaries
+        status = 200
+    else:
+        body = {'message': 'No cars found.'}
+        status = 404
+
+    return make_response(body, status)
+
+def compute_co2_per_mile(mpg):
+    CO2_per_gallon = 8.89  # kg CO2 produced per gallon
+    co2_per_mile = CO2_per_gallon / mpg
+    return co2_per_mile
+    
 
 
 
