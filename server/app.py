@@ -100,6 +100,7 @@ def cars():
 
     return make_response(body, status)
 
+# Helper Function
 def compute_co2_per_mile(mpg):
     CO2_per_gallon = 8.89  # kg CO2 produced per gallon
     co2_per_mile = CO2_per_gallon / mpg
