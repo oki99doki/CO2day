@@ -41,6 +41,10 @@ class Location(db.Model, SerializerMixin):
     cars = db.relationship('Car', back_populates="location")
 
 
+    def __repr__(self):
+        return f'<Location {self.id}, {self.name}, {self.gasolineCost}>'
+
+
 # class House(db.Model):
 #     __tablename__ = 'houses'
 
@@ -68,6 +72,10 @@ class Car(db.Model, SerializerMixin):
 
     # Relationship mapping the car to related locations
     location = db.relationship('Location', back_populates="cars")
+
+
+    def __repr__(self):
+        return f'<Car {self.id}, {self.make}, {self.model}, {self.year}, {self.milesPerYear}, {self.mpg}, {self.co2Produced}>'
 
 
 # class Flight(db.Model):
