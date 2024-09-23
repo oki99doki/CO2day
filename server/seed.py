@@ -25,6 +25,7 @@ if __name__ == '__main__':
         db.session.query(User).delete()
         db.session.query(Location).delete()
         db.session.query(Car).delete()
+        db.session.query(House).delete()
         
         db.session.commit()
 
@@ -133,12 +134,15 @@ if __name__ == '__main__':
             city = random.choice(all_locations)
             location = Location(
                 name = city['city'] + ", " + city['state'],
-                gasolineCost = city['gasoline_cost']
+                gasolineCost = city['gasoline_cost'],
+                electricityCost = city['electricity_cost'],
+                gasCost = city['natural_gas_cost']
             )
             cities.append(location)
             #locations.append(location)
             db.session.add(location)
         db.session.commit()
+
 
 
         # # Print the selected locations
@@ -263,6 +267,14 @@ if __name__ == '__main__':
         sizes = ['small', 'medium', 'large', 'extra-large']
 
         houses = []
+
+        no_users = 5
+        values = list(range(1, no_users+1))
+        # print(values)
+      
+        random.shuffle(values)
+        # print(values)
+        # print(values)
     
         for _ in range(5):
             
@@ -273,7 +285,8 @@ if __name__ == '__main__':
                 #location_id = rc(locations).id,
                 #location_id=location['id'],
                 #location_id = None,
-                user_id = fake.random_int(min=1, max=5),
+                #user_id = fake.random_int(min=1, max=5),
+                user_id = values[_],
                 location_id = fake.random_int(min=1, max=5),
                 #location_id = random(locations)
                 style = style,
