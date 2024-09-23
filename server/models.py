@@ -178,7 +178,7 @@ class Flight(db.Model):
 
 
     def __repr__(self):
-        return f'<Car {self.id}, {self.number}, {self.departure}, {self.destination}, {self.distance}, {self.co2Produced}>'
+        return f'<Flight {self.id}, {self.number}, {self.departure}, {self.destination}, {self.international}, {self.distance}, {self.co2Produced}>'
 
 
 class Aircraft(db.Model):
@@ -199,4 +199,4 @@ class Aircraft(db.Model):
 
 
     def __repr__(self):
-        return f'<Car {self.id}, {self.name}, {self.seats}, {self.gallonsPer100Pass}>'
+        return f'<Aircraft {self.id}, {self.name}, {self.seats}, {self.gallonsPer100Pass}>'

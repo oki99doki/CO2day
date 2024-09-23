@@ -9,7 +9,7 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import db, User, House, Location, Car
+from models import db, User, Location, Car, House, Flight, Aircraft
 
 import ipdb
 
@@ -26,6 +26,9 @@ if __name__ == '__main__':
         db.session.query(Location).delete()
         db.session.query(Car).delete()
         db.session.query(House).delete()
+        db.session.query(Flight).delete()
+        db.session.query(Aircraft).delete()
+
         
         db.session.commit()
 
@@ -301,6 +304,85 @@ if __name__ == '__main__':
             db.session.add(house)
             db.session.commit()
 
+
+
+        aircraft_data = [
+            {
+                "name": "Airbus A320",
+                "max_range_miles": 3300,
+                "avg_seats": 150,
+                "fuel_consumption_gallons_per_100_passenger_miles": 3.2
+            },
+            {
+                "name": "Boeing 737-800",
+                "max_range_miles": 2935,
+                "avg_seats": 160,
+                "fuel_consumption_gallons_per_100_passenger_miles": 3.2
+            },
+            {
+                "name": "Boeing 777-200ER",
+                "max_range_miles": 6014,
+                "avg_seats": 314,
+                "fuel_consumption_gallons_per_100_passenger_miles": 3.5
+            },
+            {
+                "name": "Airbus A330-300",
+                "max_range_miles": 6350,
+                "avg_seats": 277,
+                "fuel_consumption_gallons_per_100_passenger_miles": 3.0
+            },
+            {
+                "name": "Boeing 787-9 Dreamliner",
+                "max_range_miles": 7530,
+                "avg_seats": 296,
+                "fuel_consumption_gallons_per_100_passenger_miles": 2.6
+            },
+            {
+                "name": "Airbus A350-900",
+                "max_range_miles": 8000,
+                "avg_seats": 410,
+                "fuel_consumption_gallons_per_100_passenger_miles": 2.9
+            },
+            {
+                "name": "Boeing 747-8 Intercontinental",
+                "max_range_miles": 7730,
+                "avg_seats": 410,
+                "fuel_consumption_gallons_per_100_passenger_miles": 3.6
+            },
+            {
+                "name": "Embraer E195",
+                "max_range_miles": 2300,
+                "avg_seats": 120,
+                "fuel_consumption_gallons_per_100_passenger_miles": 4.5
+            },
+            {
+                "name": "Bombardier CRJ900",
+                "max_range_miles": 2000,
+                "avg_seats": 90,
+                "fuel_consumption_gallons_per_100_passenger_miles": 5.0
+            },
+            {
+                "name": "Airbus A220-300",
+                "max_range_miles": 3400,
+                "avg_seats": 160,
+                "fuel_consumption_gallons_per_100_passenger_miles": 3.1
+            }
+        ]
+
+        aircrafts = []
+
+        for _ in range(10):
+            #ipdb.set_trace()
+            aircraft_choice = random.choice(aircraft_data)
+            aircraft = Aircraft(
+                name = aircraft_choice['name'],
+                range = aircraft_choice['max_range_miles'],
+                seats = aircraft_choice['avg_seats'],
+                gallonsPer100Pass = aircraft_choice['fuel_consumption_gallons_per_100_passenger_miles']
+            )
+            aircrafts.append(aircraft)
+            db.session.add(aircraft)
+        db.session.commit()
 
 
         print("Seeding complete!")
