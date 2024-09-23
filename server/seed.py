@@ -9,7 +9,7 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import db, Location, Car
+from models import db, User, Location, Car
 
 import ipdb
 
@@ -22,15 +22,32 @@ if __name__ == '__main__':
         # Seed code goes here!
 
         # Clear existing data
+        db.session.query(User).delete()
         db.session.query(Location).delete()
         db.session.query(Car).delete()
         
         db.session.commit()
 
 
-        # generate faker data 
+        # generate faker data
+
+
+        
+        users = []
 
     
+        for _ in range(5):
+            
+            user = User(name = fake.name())
+
+            users.append(user)
+            db.session.add(user)
+            
+        db.session.commit()
+
+
+
+
 
         all_locations = [
             {'city': 'New York', 'state': 'NY', 'electricity_cost': 24.00, 'natural_gas_cost': 10.00, 'gasoline_cost': 3.60},
@@ -180,8 +197,6 @@ if __name__ == '__main__':
 
 
         
-                
-
         # # Function to generate vehicle data
         # def generate_vehicle_data(num_vehicles):
         #     vehicle_data = []
@@ -216,11 +231,11 @@ if __name__ == '__main__':
             model = random.choice(list(valid_combinations[make].keys()))
             # Select a random location from the dictionary list
             location = random.choice(all_locations)
-            #ipdb.set_trace()
             car = Car(
                 #location_id = rc(locations).id,
                 #location_id=location['id'],
                 #location_id = None,
+                user_id =  fake.random_int(min=1, max=5),
                 location_id = fake.random_int(min=1, max=5),
                 #location_id = random(locations)
                 make = make,
@@ -231,22 +246,17 @@ if __name__ == '__main__':
                 co2Produced = fake.random_int(min=200, max=2000)
             )
 
-            #ipdb.set_trace()
-
             cars.append(car)
             db.session.add(car)
             
         db.session.commit()
 
         # Add new individual customer cars e.g. like this (OPTIONAL)
-        newCar = Car(location_id=2, make = "Ferrari", model="F40", year=1996, milesPerYear=1500, mpg=14, co2Produced=300)
+        newCar = Car(location_id=2, user_id=4, make = "Ferrari", model="F40", year=1996, milesPerYear=1500, mpg=14, co2Produced=300)
         db.session.add(newCar)
         db.session.commit()
 
         print("Seeding complete!")
-
-
-
 
     
 

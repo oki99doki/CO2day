@@ -21,11 +21,19 @@ db = SQLAlchemy(metadata=metadata)
 
 # Models go here!
 
-# class User(db.Model):
-#     __tablename__ = 'users'
+class User(db.Model, SerializerMixin):
+    __tablename__ = 'users'
 
-#     id = db.Column(db.Integer, primary_key = True)
-#     userName = db.Column(db.String)
+    id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String)
+
+    # Relationship mapping user to related car
+    car = db.relationship('Car', uselist=False, back_populates='user')
+
+
+    def __repr__(self):
+        return f'<User {self.id}, {self.name}>'
+    
 
 
 class Location(db.Model, SerializerMixin):
@@ -69,9 +77,15 @@ class Car(db.Model, SerializerMixin):
 
     # Foreign key to store the location id
     location_id = db.Column(db.Integer, db.ForeignKey('locations.id'))
+    
+    # Foreign key to store the user id
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     # Relationship mapping the car to related locations
     location = db.relationship('Location', back_populates="cars")
+
+    # Relationship mapping car to related user
+    user = db.relationship('User', back_populates='car')
 
 
     def __repr__(self):
