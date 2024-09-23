@@ -151,7 +151,8 @@ class Flight(db.Model):
     # Info
     number = db.Column(db.String)
     departure = db.Column(db.String)
-    destination = db.Column(db.Integer)
+    destination = db.Column(db.String)
+    international = db.Column(db.Boolean)
 
     # Parameter
     distance = db.Column(db.Float) # Parameter: Distance between departure and destination airports in miles
@@ -187,7 +188,7 @@ class Aircraft(db.Model):
 
     # Info
     name = db.Column(db.String)
-    international = db.Column(db.Boolean)
+    range = db.Column(db.Integer)
 
     # Parameters
     seats = db.Column(db.Integer) # Parameter: Number of seats in aircraft
