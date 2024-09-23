@@ -35,6 +35,9 @@ class User(db.Model, SerializerMixin):
     # Relationship mapping user to related house
     house = db.relationship('House', uselist=False, back_populates='user')
 
+    # Relationship mapping user to related flight
+    flights = db.relationship('Flight', back_populates='user')
+
 
     def __repr__(self):
         return f'<User {self.id}, {self.name}>'
@@ -140,16 +143,59 @@ class House(db.Model):
         return f'<Car {self.id}, {self.style}, {self.size}, {self.electricityDollars}, {self.gasDollars}, {self.electricityCo2Produced}, {self.gasCo2Produced}>'
 
 
+class Flight(db.Model):
+    __tablename__ = 'flights'
 
-# class Flight(db.Model):
-#     __tablename__ = 'flights'
+    id = db.Column(db.Integer, primary_key = True)
+    
+    # Info
+    number = db.Column(db.String)
+    departure = db.Column(db.String)
+    destination = db.Column(db.Integer)
 
-#     pass
+    # Parameter
+    distance = db.Column(db.Float) # Parameter: Distance between departure and destination airports in miles
+    
+    # Intermdiary Calc. Results
+    # co2PerMile - This is calculated.
+    # milesTraveled - This is calculated.
+
+    # Output
+    co2Produced = db.Column(db.Float) # Output: CO2 produced per trip (return flight)[kg CO2]
+
+    # Foreign key to store the location id
+    aircraft_id = db.Column(db.Integer, db.ForeignKey('aircrafts.id'))
+    
+    # Foreign key to store the user id
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    # Relationship mapping the flight to related aircrafts
+    aircraft = db.relationship('Aircraft', back_populates="flights")
+
+    # Relationship mapping flight to related user
+    user = db.relationship('User', back_populates='flights')
 
 
-# class Aircraft(db.Model):
-#     __tablename__ = 'aircrafts'
-
-#     pass
+    def __repr__(self):
+        return f'<Car {self.id}, {self.number}, {self.departure}, {self.destination}, {self.distance}, {self.co2Produced}>'
 
 
+class Aircraft(db.Model):
+    __tablename__ = 'aircrafts'
+
+    id = db.Column(db.Integer, primary_key = True)
+
+    # Info
+    name = db.Column(db.String)
+    international = db.Column(db.Boolean)
+
+    # Parameters
+    seats = db.Column(db.Integer) # Parameter: Number of seats in aircraft
+    gallonsPer100Pass = db.Column(db.Float) # Specific Fuel Consumption in Gallons per 100 passenger-miles
+
+    # Relationship mapping aircraft to related flight
+    flights = db.relationship('Flight', back_populates='aircraft')
+
+
+    def __repr__(self):
+        return f'<Car {self.id}, {self.name}, {self.seats}, {self.gallonsPer100Pass}>'
