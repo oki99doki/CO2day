@@ -25,10 +25,15 @@ class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key = True)
+
+    # Info
     name = db.Column(db.String)
 
     # Relationship mapping user to related car
     car = db.relationship('Car', uselist=False, back_populates='user')
+
+    # Relationship mapping user to related house
+    house = db.relationship('House', uselist=False, back_populates='user')
 
 
     def __repr__(self):
@@ -40,23 +45,24 @@ class Location(db.Model, SerializerMixin):
     __tablename__ = 'locations'
 
     id = db.Column(db.Integer, primary_key = True)
+
+    # Info
     name = db.Column(db.String)
-    #electricityCost = db.Column(db.Float) # Parameter: Electricity Unit Cost in US$ per kWh
-    #gasCost = db.Column(db.Float) # Parameter: Natural Gas Unit Cost in US$ per Thousand cubic feet
+
+    # Parameters
+    electricityCost = db.Column(db.Float) # Parameter: Electricity Unit Cost in US$ per kWh
+    gasCost = db.Column(db.Float) # Parameter: Natural Gas Unit Cost in US$ per Thousand cubic feet
     gasolineCost = db.Column(db.Float) # Parameter: Gasoline Unit Cost in US$ per Gallon
 
     # Relationship mapping the location to related cars
     cars = db.relationship('Car', back_populates="location")
 
+    # Relationship mapping the location to related houses
+    houses = db.relationship('House', back_populates="location")
+
 
     def __repr__(self):
-        return f'<Location {self.id}, {self.name}, {self.gasolineCost}>'
-
-
-# class House(db.Model):
-#     __tablename__ = 'houses'
-
-#     pass
+        return f'<Location {self.id}, {self.name}, {self.electricityCost}, {self.gasCost}, {self.gasolineCost}>'
 
 
 class Car(db.Model, SerializerMixin):
@@ -64,15 +70,19 @@ class Car(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key = True)
     
+    # Info
     make = db.Column(db.String)
     model = db.Column(db.String)
     year = db.Column(db.Integer)
 
+    # Input
     milesPerYear = db.Column(db.Float)
     mpg = db.Column(db.Float)
 
+    # Intermdiary Calc. Results
     # co2perMile =  - This is calculated. Where should the calculation be located?
 
+    # Output
     co2Produced = db.Column(db.Float) # Output: CO2 produced [kg CO2 / Year]
 
     # Foreign key to store the location id
@@ -90,6 +100,45 @@ class Car(db.Model, SerializerMixin):
 
     def __repr__(self):
         return f'<Car {self.id}, {self.make}, {self.model}, {self.year}, {self.milesPerYear}, {self.mpg}, {self.co2Produced}>'
+
+
+class House(db.Model):
+    __tablename__ = 'houses'
+
+    id = db.Column(db.Integer, primary_key = True)
+    
+    # Info
+    style = db.Column(db.String)
+    size = db.Column(db.String)
+    
+    # Input
+    electricityDollars = db.Column(db.Float)
+    gasDollars = db.Column(db.Float)
+
+    # Intermdiary Calc. Results       
+    # electricityConsumed - This is calculated. Where should the calculation be located?
+    # gasConsumed - This is calculated.
+
+    # Output
+    electricityCo2Produced = db.Column(db.Float) # Output: CO2 produced due to electricity consumption [kg CO2 / Year]
+    gasCo2Produced = db.Column(db.Float) # Output: CO2 produced due to natural gas consumption [kg CO2 / Year]
+    
+    # Foreign key to store the location id
+    location_id = db.Column(db.Integer, db.ForeignKey('locations.id'))
+    
+    # Foreign key to store the user id
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    # Relationship mapping the house to related locations
+    location = db.relationship('Location', back_populates="houses")
+
+    # Relationship mapping house to related user
+    user = db.relationship('User', back_populates='house')
+
+
+    def __repr__(self):
+        return f'<Car {self.id}, {self.style}, {self.size}, {self.electricityDollars}, {self.gasDollars}, {self.electricityCo2Produced}, {self.gasCo2Produced}>'
+
 
 
 # class Flight(db.Model):

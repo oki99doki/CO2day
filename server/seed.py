@@ -9,7 +9,7 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import db, User, Location, Car
+from models import db, User, House, Location, Car
 
 import ipdb
 
@@ -256,9 +256,42 @@ if __name__ == '__main__':
         db.session.add(newCar)
         db.session.commit()
 
+
+
+        # Custom lists of makes and models
+        styles = ['House', 'Townhouse', 'Condo', 'Apartment']
+        sizes = ['small', 'medium', 'large', 'extra-large']
+
+        houses = []
+    
+        for _ in range(5):
+            
+            style = random.choice(styles)
+            size = random.choice(sizes)
+            
+            house = House(
+                #location_id = rc(locations).id,
+                #location_id=location['id'],
+                #location_id = None,
+                user_id = fake.random_int(min=1, max=5),
+                location_id = fake.random_int(min=1, max=5),
+                #location_id = random(locations)
+                style = style,
+                size = size,
+                electricityDollars = fake.random_int(min=40, max=400),
+                gasDollars = fake.random_int(min=30, max=300),
+                electricityCo2Produced = fake.random_int(min=800, max=8000),
+                gasCo2Produced = fake.random_int(min=600, max=6000)
+            )
+
+            houses.append(house)
+            db.session.add(house)
+            db.session.commit()
+
+
+
         print("Seeding complete!")
 
-    
 
         # generate intermediary result
         # commit intermediary results accordingly 
