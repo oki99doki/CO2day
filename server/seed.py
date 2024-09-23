@@ -306,6 +306,50 @@ if __name__ == '__main__':
 
 
 
+        flights_data = [
+                {"number": "DL 87", "departure_city": "New York, NY", "destination_city": "London, UK", "is_international": True, "distance_miles": 3459},
+                {"number": "AA 112", "departure_city": "Los Angeles, CA", "destination_city": "Chicago, IL", "is_international": False, "distance_miles": 1745},
+                {"number": "UA 205", "departure_city": "San Francisco, CA", "destination_city": "Tokyo, Japan", "is_international": True, "distance_miles": 5145},
+                {"number": "SW 365", "departure_city": "Houston, TX", "destination_city": "Miami, FL", "is_international": False, "distance_miles": 1090},
+                {"number": "BA 279", "departure_city": "Boston, MA", "destination_city": "Dublin, Ireland", "is_international": True, "distance_miles": 3167},
+                {"number": "WN 734", "departure_city": "Las Vegas, NV", "destination_city": "Phoenix, AZ", "is_international": False, "distance_miles": 298},
+                {"number": "AF 18", "departure_city": "Newark, NJ", "destination_city": "Paris, France", "is_international": True, "distance_miles": 3885},
+                {"number": "LH 441", "departure_city": "Seattle, WA", "destination_city": "Frankfurt, Germany", "is_international": True, "distance_miles": 4865},
+                {"number": "DL 303", "departure_city": "Atlanta, GA", "destination_city": "Orlando, FL", "is_international": False, "distance_miles": 404},
+                {"number": "VX 844", "departure_city": "San Diego, CA", "destination_city": "New York, NY", "is_international": False, "distance_miles": 2771},
+                {"number": "NH 8", "departure_city": "Los Angeles, CA", "destination_city": "Tokyo, Japan", "is_international": True, "distance_miles": 5149},
+                {"number": "SU 145", "departure_city": "New York, NY", "destination_city": "Moscow, Russia", "is_international": True, "distance_miles": 4666},
+                {"number": "KL 204", "departure_city": "Atlanta, GA", "destination_city": "Amsterdam, Netherlands", "is_international": True, "distance_miles": 4759},
+                {"number": "AA 145", "departure_city": "Miami, FL", "destination_city": "San Juan, Puerto Rico", "is_international": True, "distance_miles": 1020},
+                {"number": "DL 517", "departure_city": "Washington, DC", "destination_city": "Boston, MA", "is_international": False, "distance_miles": 394},
+                {"number": "QF 100", "departure_city": "Los Angeles, CA", "destination_city": "Sydney, Australia", "is_international": True, "distance_miles": 7498},
+                {"number": "AC 882", "departure_city": "Toronto, Canada", "destination_city": "Vancouver, Canada", "is_international": False, "distance_miles": 1993},
+                {"number": "CZ 900", "departure_city": "San Francisco, CA", "destination_city": "Beijing, China", "is_international": True, "distance_miles": 6926},
+                {"number": "WN 342", "departure_city": "Dallas, TX", "destination_city": "Austin, TX", "is_international": False, "distance_miles": 194},
+                {"number": "IB 6514", "departure_city": "Miami, FL", "destination_city": "Madrid, Spain", "is_international": True, "distance_miles": 4323}
+            ]
+        
+        flights = []
+
+        for _ in range(10):
+            #ipdb.set_trace()
+            flight_choice = random.choice(flights_data)
+            flight = Flight(
+                number = flight_choice['number'],
+                departure = flight_choice['departure_city'],
+                destination = flight_choice['destination_city'],
+                international = flight_choice['is_international'],
+                distance = flight_choice['distance_miles'],
+                co2Produced = 1000,
+                user_id = fake.random_int(min=1, max=5),
+                aircraft_id = fake.random_int(min=1, max=10),
+            )
+            flights.append(flight)
+            db.session.add(flight)
+        db.session.commit()
+
+
+
         aircraft_data = [
             {
                 "name": "Airbus A320",
