@@ -1,22 +1,18 @@
-#from sqlalchemy_serializer import SerializerMixin
 #from sqlalchemy.ext.associationproxy import association_proxy
 
-#from config import db
+# SK: added again 9/24
+from config import db
 
-
-from flask_sqlalchemy import SQLAlchemy
+# SK: comment out 9/24 - this is in config.py
+#from flask_sqlalchemy import SQLAlchemy
 
 from sqlalchemy_serializer import SerializerMixin
 
-from sqlalchemy import MetaData
+# SK: comment out 9/24 - this is in config.py
+#from sqlalchemy import MetaData
 
 
-# contains definitions of tables and associated schema constructs
-# read more about Metadata using the link at the bottom of the page
-metadata = MetaData()
 
-# create the Flask SQLAlchemy extension
-db = SQLAlchemy(metadata=metadata)
 
 
 # Models go here!
