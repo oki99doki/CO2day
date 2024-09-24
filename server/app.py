@@ -14,7 +14,7 @@ from flask import request, make_response
 
 
 # LOCAL IMPORTS
-from config import app, db, api
+from config import app, db #, api
 
 
 # MODEL IMPORTS
