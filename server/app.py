@@ -140,7 +140,7 @@ def houses():
 
     all_houses = House.query.all()
 
-    location = Location.query.all()
+    all_locations = Location.query.all()
 
     #ipdb.set_trace()
 
@@ -159,6 +159,17 @@ def houses():
             # You can also compute total CO2 for the year if needed
             #total_co2 = co2_per_mile * car.milesPerYear
             #total_co2 = 
+
+            loc_id = house.location_id
+            #ipdb.set_trace()
+            loc = Location.query.filter_by(id=loc_id).first()
+            print(loc)
+            if loc:
+                electricityCost = loc.electricityCost
+            #ipdb.set_trace()
+            print(electricityCost)
+
+           
            
             # Create a dictionary for each house
             house_dict = {
@@ -168,9 +179,13 @@ def houses():
                 'electricityDollars': house.electricityDollars,
                 #'gasDollars': housec.gasDollars,
                 #'electricityCo2Produced': compute_electricityConsumed(house.electricityDollars, location.electricityCost) * 0.369 #electricity_co2
-                'electricityCo2Produced': compute_electricityConsumed(house.electricityDollars) * 0.369 #electricity_co2
+                'electricityConsumed': compute_electricityConsumed(house.electricityDollars, electricityCost), #electricity_co2
+                'electricityCost':  electricityCost,
+                'electricityCo2Produced': compute_electricityConsumed(house.electricityDollars, electricityCost) * 0.369, #electricity_co2
                 #'gasCo2Produced': house.gasCo2Produced
                 #'co2Produced': total_co2  # You can choose to save co2_per_mile if needed
+                'user_id': house.user_id,
+                'location_id': house.location_id
             }
             house_dicts.append(house_dict)
 
@@ -189,8 +204,8 @@ def houses():
 #     return electricityConsumed
 
 # quick fix but w/o unit cost as location-dependent parameter
-def compute_electricityConsumed(electricityDollars):
-    electricityConsumed = electricityDollars * 12 / 10
+def compute_electricityConsumed(electricityDollars, electricityCost):
+    electricityConsumed = electricityDollars * 12 / (electricityCost/100)
     return electricityConsumed
 
 
