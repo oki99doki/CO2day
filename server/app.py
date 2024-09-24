@@ -246,9 +246,21 @@ def flights():
     all_flights = Flight.query.all()
 
     if all_flights:
+
         flight_dicts = []
+
         for flight in all_flights:
             
+            
+            aircraftGallonsConsumed = compute_aircraftGallonsConsumed(flight.distance, flight.aircraft.gallonsPer100Pass, flight.aircraft.seats) # Gallons consumed for aircraft for flight
+
+            aircraftCo2Produced = 10 * aircraftGallonsConsumed # CO2 produced for aircraft for flight
+
+            co2Produced = aircraftCo2Produced / flight.aircraft.seats # CO2 produced for aircraft for flight
+        
+            # CO2 produced per flight and passenger in kg CO2
+            aircraftCo2Produced
+
             # Create a dictionary for each flight
             flight_dict = {
                 'id': flight.id,
@@ -256,8 +268,13 @@ def flights():
                 'departure': flight.departure,
                 'destination': flight.destination,
                 'international': flight.international,
+
                 'distance': flight.distance,
-                'co2Produced': flight.co2Produced,
+                #'co2Produced': flight.co2Produced, - commented out: this is old constant value still in seed.py of 1000
+                'co2Produced': co2Produced,
+
+                'user_id': flight.user_id,
+                'aircraft_id': flight.aircraft_id
             }
             flight_dicts.append(flight_dict)
 
@@ -269,6 +286,11 @@ def flights():
 
     return make_response(body, status)
 
+# Helper Functions
+def compute_aircraftGallonsConsumed(distance, gallonsPer100Pass, seats):
+    aircraftGallonsConsumed = (2 * distance) * gallonsPer100Pass * (seats/100)
+    return aircraftGallonsConsumed
+
 
 
 @app.route('/aircrafts')
@@ -277,7 +299,9 @@ def aircrafts():
     all_aircrafts = Aircraft.query.all()
 
     if all_aircrafts:
+
         aircraft_dicts = []
+
         for aircraft in all_aircrafts:
             
             # Create a dictionary for each flight
@@ -297,6 +321,7 @@ def aircrafts():
         status = 404
 
     return make_response(body, status)
+
 
 
 if __name__ == '__main__':
