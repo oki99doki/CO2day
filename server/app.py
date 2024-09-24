@@ -50,26 +50,6 @@ def index():
 @app.route('/cars')
 def cars():
 
-    #ipdb.set_trace()
-    # car = Car.query.first()
-
-    # #car_dict = [car.to_dict() for car in cars]
-
-    # if car:
-    #     body = {'id': car.id,
-    #         'maken': car.make,
-    #         'model': car.model,
-    #         'year': car.year,
-    #         'milesPerYear': car.milesPerYear,
-    #         'mpg': car.mpg,
-    #         'co2Produced': car.co2Produced
-    #         }
-    #     status = 200
-    # else:
-    #     body = {'message': f'Car {id} not found.'}
-    #     status = 404
-    #return make_response(body, status)
-
     all_cars = Car.query.all()
 
     if all_cars:
