@@ -136,7 +136,7 @@ class House(db.Model):
 
 
     def __repr__(self):
-        return f'<Car {self.id}, {self.style}, {self.size}, {self.electricityDollars}, {self.gasDollars}, {self.electricityCo2Produced}, {self.gasCo2Produced}>'
+        return f'<House {self.id}, {self.style}, {self.size}, {self.electricityDollars}, {self.gasDollars}, {self.electricityCo2Produced}, {self.gasCo2Produced}>'
 
 
 class Flight(db.Model):

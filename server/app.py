@@ -65,6 +65,34 @@ def users():
 
 
 
+@app.route('/locations')
+def locations():
+
+    all_locations = Location.query.all()
+
+    if all_locations:
+        location_dicts = []
+        for location in all_locations:
+            
+            # Create a dictionary for each user
+            location_dict = {
+                'id': location.id,
+                'name': location.name,
+                'electricityCost': location.electricityCost,
+                'gasCost': location.gasCost,
+                'gasolineCost': location.gasolineCost,
+            }
+            location_dicts.append(location_dict)
+
+        body = {'locations': location_dicts}  # List of all car dictionaries
+        status = 200
+    else:
+        body = {'message': 'No locations found.'}
+        status = 404
+
+    return make_response(body, status)
+
+
 
 @app.route('/cars')
 def cars():
@@ -114,9 +142,14 @@ def houses():
 
     location = Location.query.all()
 
+    #ipdb.set_trace()
+
     if all_houses:
         house_dicts = []
         for house in all_houses:
+
+            # Pseudo Code - need some functionality like this ...
+            # get house id, then based on house id find location id and use that for electricityCost
 
             # Compute CO2 produced per mile
             #((house.electricity_dollars * 12) / location.electricty_cost ) * 0.369 = cotwo_per_house
@@ -133,8 +166,9 @@ def houses():
                 'style': house.style,
                 'size': house.size,
                 'electricityDollars': house.electricityDollars,
-                #'gasDollars': house.gasDollars,
-                'electricityCo2Produced': compute_electricityConsumed(house.electricityDollars, location.electricityCost) * 0.369 #electricity_co2
+                #'gasDollars': housec.gasDollars,
+                #'electricityCo2Produced': compute_electricityConsumed(house.electricityDollars, location.electricityCost) * 0.369 #electricity_co2
+                'electricityCo2Produced': compute_electricityConsumed(house.electricityDollars) * 0.369 #electricity_co2
                 #'gasCo2Produced': house.gasCo2Produced
                 #'co2Produced': total_co2  # You can choose to save co2_per_mile if needed
             }
@@ -150,10 +184,14 @@ def houses():
 
 
 # Helper Function
-def compute_electricityConsumed(electricityDollars, location):
-    electricityConsumed = electricityDollars * 12 / location.electricityCost
-    return electricityConsumed
+# def compute_electricityConsumed(electricityDollars, electricityCost):
+#     electricityConsumed = electricityDollars * 12 / electricityCost
+#     return electricityConsumed
 
+# quick fix but w/o unit cost as location-dependent parameter
+def compute_electricityConsumed(electricityDollars):
+    electricityConsumed = electricityDollars * 12 / 10
+    return electricityConsumed
 
 
 #((house.electricity_dollars * 12) / location.electricty_cost ) * 0.369 = cotwo_per_house
@@ -179,6 +217,66 @@ def compute_electricityConsumed(electricityDollars, location):
     #create intermediary results
 
     #commit all info including intermediary results to db 
+
+
+
+@app.route('/flights')
+def flights():
+
+    all_flights = Flight.query.all()
+
+    if all_flights:
+        flight_dicts = []
+        for flight in all_flights:
+            
+            # Create a dictionary for each flight
+            flight_dict = {
+                'id': flight.id,
+                'name': flight.number,
+                'departure': flight.departure,
+                'destination': flight.destination,
+                'international': flight.international,
+                'distance': flight.distance,
+                'co2Produced': flight.co2Produced,
+            }
+            flight_dicts.append(flight_dict)
+
+        body = {'flights': flight_dicts}  # List of all flight dictionaries
+        status = 200
+    else:
+        body = {'message': 'No flights found.'}
+        status = 404
+
+    return make_response(body, status)
+
+
+
+@app.route('/aircrafts')
+def aircrafts():
+
+    all_aircrafts = Aircraft.query.all()
+
+    if all_aircrafts:
+        aircraft_dicts = []
+        for aircraft in all_aircrafts:
+            
+            # Create a dictionary for each flight
+            aircraft_dict = {
+                'id': aircraft.id,
+                'name': aircraft.name,
+                'range': aircraft.range,
+                'seats': aircraft.seats,
+                'gallonsPer100Pass': aircraft.gallonsPer100Pass                
+            }
+            aircraft_dicts.append(aircraft_dict)
+
+        body = {'aircrafts': aircraft_dicts}  # List of all flight dictionaries
+        status = 200
+    else:
+        body = {'message': 'No faircrafts found.'}
+        status = 404
+
+    return make_response(body, status)
 
 
 if __name__ == '__main__':
