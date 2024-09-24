@@ -71,7 +71,9 @@ def locations():
     all_locations = Location.query.all()
 
     if all_locations:
+
         location_dicts = []
+
         for location in all_locations:
             
             # Create a dictionary for each user
@@ -100,10 +102,14 @@ def cars():
     all_cars = Car.query.all()
 
     if all_cars:
+
         car_dicts = []
+
         for car in all_cars:
+
             # Compute CO2 produced per mile
             co2_per_mile = compute_co2_per_mile(car.mpg)
+
             # You can also compute total CO2 for the year if needed
             total_co2 = co2_per_mile * car.milesPerYear
 
@@ -140,50 +146,42 @@ def houses():
 
     all_houses = House.query.all()
 
-    all_locations = Location.query.all()
-
-    #ipdb.set_trace()
-
     if all_houses:
+
         house_dicts = []
+
         for house in all_houses:
+            
+            # Compute electricity consumed per year in kWh
+            electricityConsumed = compute_electricityConsumed(house.electricityDollars, house.location.electricityCost)
 
-            # Pseudo Code - need some functionality like this ...
-            # get house id, then based on house id find location id and use that for electricityCost
+            # CO2 produced per year due to electricity consumption in kg CO2
+            electricityCo2Produced = compute_electricityCo2Produced(electricityConsumed)
 
-            # Compute CO2 produced per mile
-            #((house.electricity_dollars * 12) / location.electricty_cost ) * 0.369 = cotwo_per_house
-            #electricity_co2 = compute_electricityConsumed(house.electricityDollars) * 0.369
+            # Compute gas consumed per year in 1000 cubic feet
+            gasConsumed = compute_gasConsumed(house.gasDollars, house.location.gasCost)
 
-            #gas_co2 = compute_co2_per_mile(car.mpg)
-            # You can also compute total CO2 for the year if needed
-            #total_co2 = co2_per_mile * car.milesPerYear
-            #total_co2 = 
-
-            loc_id = house.location_id
-            #ipdb.set_trace()
-            loc = Location.query.filter_by(id=loc_id).first()
-            print(loc)
-            if loc:
-                electricityCost = loc.electricityCost
-            #ipdb.set_trace()
-            print(electricityCost)
-
-           
+            # CO2 produced per year due to gas consumption in kg CO2
+            gasCo2Produced = compute_gasCo2Produced(gasConsumed)
            
             # Create a dictionary for each house
             house_dict = {
                 'id': house.id,
                 'style': house.style,
                 'size': house.size,
+
                 'electricityDollars': house.electricityDollars,
-                #'gasDollars': housec.gasDollars,
-                #'electricityCo2Produced': compute_electricityConsumed(house.electricityDollars, location.electricityCost) * 0.369 #electricity_co2
-                'electricityConsumed': compute_electricityConsumed(house.electricityDollars, electricityCost), #electricity_co2
-                'electricityCost':  electricityCost,
-                'electricityCo2Produced': compute_electricityConsumed(house.electricityDollars, electricityCost) * 0.369, #electricity_co2
-                #'gasCo2Produced': house.gasCo2Produced
-                #'co2Produced': total_co2  # You can choose to save co2_per_mile if needed
+                'electricityConsumed': electricityConsumed,
+                'electricityCost':  house.location.electricityCost,
+                'electricityCo2Produced': electricityCo2Produced, #electricity_co2
+
+                'gasDollars': house.gasDollars,
+                'gasConsumed': gasConsumed,
+                'gasCost':  house.location.gasCost,
+                'gasCo2Produced': gasCo2Produced, #gas_co2
+
+                'Co2Produced': electricityCo2Produced + gasCo2Produced, #electricity_and_gas_combined_co2
+
                 'user_id': house.user_id,
                 'location_id': house.location_id
             }
@@ -198,15 +196,22 @@ def houses():
     return make_response(body, status)
 
 
-# Helper Function
-# def compute_electricityConsumed(electricityDollars, electricityCost):
-#     electricityConsumed = electricityDollars * 12 / electricityCost
-#     return electricityConsumed
-
-# quick fix but w/o unit cost as location-dependent parameter
+# Helper Functions
 def compute_electricityConsumed(electricityDollars, electricityCost):
     electricityConsumed = electricityDollars * 12 / (electricityCost/100)
     return electricityConsumed
+
+def compute_electricityCo2Produced(electricityConsumed):
+    electricityCo2Produced = electricityConsumed * 0.369
+    return electricityCo2Produced
+
+def compute_gasConsumed(gasDollars, gasCost):
+    gasConsumed = gasDollars * 12 / (gasCost)
+    return gasConsumed
+
+def compute_gasCo2Produced(gasConsumed):
+    gasCo2Produced = gasConsumed * 54.44
+    return gasCo2Produced
 
 
 #((house.electricity_dollars * 12) / location.electricty_cost ) * 0.369 = cotwo_per_house
