@@ -74,6 +74,16 @@ Energy Saving Tips
     
     GET /locations: Retrieve a list of all locations.
 
+**Car Routes**
+    
+    GET /cars: Retrieve a list of all cars.
+    
+    POST /cars: Create a new car.
+    
+    GET /cars/<id>: Retrieve a specific car by ID.
+    
+    DELETE /cars/<id>: Delete a specific car by ID.
+
 **House Routes**
     
     GET /houses: Retrieve a list of all houses.
@@ -97,16 +107,6 @@ Energy Saving Tips
 **Aircraft Routes**
     
     GET /aircrafts: Retrieve a list of all aircrafts.
-
-**Car Routes**
-    
-    GET /cars: Retrieve a list of all cars.
-    
-    POST /cars: Create a new car.
-    
-    GET /cars/<id>: Retrieve a specific car by ID.
-    
-    DELETE /cars/<id>: Delete a specific car by ID.
 
 
 ## Kanban Board
