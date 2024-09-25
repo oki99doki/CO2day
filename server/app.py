@@ -51,7 +51,16 @@ def users():
             # Create a dictionary for each user
             user_dict = {
                 'id': user.id,
-                'name': user.name
+                'name': user.name,
+
+                'co2Produced_electricity': compute_electricityCo2Produced(compute_electricityConsumed(user.house.electricityDollars, user.house.location.electricityCost)),
+                'co2Produced_gas': compute_gasCo2Produced(compute_gasConsumed(user.house.gasDollars, user.house.location.gasCost)),
+
+                'house_id': user.house.id,
+                'location_id': user.house.location_id
+                #'co2Produced_gasoline'
+
+
             }
             user_dicts.append(user_dict)
 
