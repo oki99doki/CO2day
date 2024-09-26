@@ -232,7 +232,17 @@ if __name__ == '__main__':
 
 
         cars = []
-        for _ in range(10):
+
+
+        no_users = 5
+        values = list(range(1, no_users+1))
+              
+        random.shuffle(values)
+        
+
+
+
+        for _ in range(no_users):
             make = random.choice(list(valid_combinations.keys()))
             #model = random.choice(valid_combinations[make])
             model = random.choice(list(valid_combinations[make].keys()))
@@ -242,8 +252,8 @@ if __name__ == '__main__':
                 #location_id = rc(locations).id,
                 #location_id=location['id'],
                 #location_id = None,
-                user_id =  fake.random_int(min=1, max=5),
-                location_id = fake.random_int(min=1, max=5),
+                user_id = values[_],
+                location_id = fake.random_int(min=1, max=no_users),
                 #location_id = random(locations)
                 make = make,
                 model = model,  #random.choice(valid_combinations[make]),
@@ -258,10 +268,10 @@ if __name__ == '__main__':
             
         db.session.commit()
 
-        # Add new individual customer cars e.g. like this (OPTIONAL)
-        newCar = Car(location_id=2, user_id=4, make = "Ferrari", model="F40", year=1996, milesPerYear=1500, mpg=14, co2Produced=300)
-        db.session.add(newCar)
-        db.session.commit()
+        # # Add new individual customer cars e.g. like this (OPTIONAL)
+        # newCar = Car(location_id=2, user_id=4, make = "Ferrari", model="F40", year=1996, milesPerYear=1500, mpg=14, co2Produced=300)
+        # db.session.add(newCar)
+        # db.session.commit()
 
 
 
@@ -271,15 +281,15 @@ if __name__ == '__main__':
 
         houses = []
 
-        no_users = 5
-        values = list(range(1, no_users+1))
+        #no_users = 5
+        #values = list(range(1, no_users+1))
         # print(values)
       
-        random.shuffle(values)
+        #random.shuffle(values)
         # print(values)
         # print(values)
     
-        for _ in range(5):
+        for _ in range(no_users):
             
             style = random.choice(styles)
             size = random.choice(sizes)
@@ -290,7 +300,7 @@ if __name__ == '__main__':
                 #location_id = None,
                 #user_id = fake.random_int(min=1, max=5),
                 user_id = values[_],
-                location_id = fake.random_int(min=1, max=5),
+                location_id = fake.random_int(min=1, max=no_users),
                 #location_id = random(locations)
                 style = style,
                 size = size,
