@@ -45,8 +45,29 @@ def users():
     all_users = User.query.all()
 
     if all_users:
+
         user_dicts = []
+
         for user in all_users:
+
+        #     total_co2_gasoline = 0
+
+        #     for car in user.car:
+        #         total_co2_gasoline += compute_co2_per_mile(user.car.mpg) * user.car.milesPerYear
+
+            total_co2_flight = 0
+
+            for flight in user.flights:
+
+                #ipdb.set_trace()
+                aircraftGallonsConsumed = compute_aircraftGallonsConsumed(flight.distance, flight.aircraft.gallonsPer100Pass, flight.aircraft.seats) # Gallons consumed for aircraft for flight
+
+                aircraftCo2Produced = 10 * aircraftGallonsConsumed # CO2 produced for aircraft for flight
+
+                co2Produced = aircraftCo2Produced / flight.aircraft.seats # CO2 produced for aircraft for flight
+
+                total_co2_flight += co2Produced
+
             
             # Create a dictionary for each user
             user_dict = {
@@ -56,9 +77,16 @@ def users():
                 'co2Produced_electricity': compute_electricityCo2Produced(compute_electricityConsumed(user.house.electricityDollars, user.house.location.electricityCost)),
                 'co2Produced_gas': compute_gasCo2Produced(compute_gasConsumed(user.house.gasDollars, user.house.location.gasCost)),
 
+                'co2Produced_gasoline': compute_co2_per_mile(user.car.mpg) * user.car.milesPerYear,
+                # 'co2Produced_gasoline': total_co2_gasoline,
+
                 'house_id': user.house.id,
-                'location_id': user.house.location_id
-                #'co2Produced_gasoline'
+                'location_id': user.house.location_id,
+                
+                'co2Produced_flight': total_co2_flight,
+
+                'flight_id':  [flight.id for flight in user.flights],
+                'aircraft_id': [flight.aircraft_id for flight in user.flights]
 
 
             }
@@ -116,6 +144,9 @@ def cars():
 
         for car in all_cars:
 
+            # Compute gallons consumed by car per year
+            gasolineConsumed = car.milesPerYear / car.mpg
+            
             # Compute CO2 produced per mile
             co2_per_mile = compute_co2_per_mile(car.mpg)
 
@@ -130,6 +161,8 @@ def cars():
                 'year': car.year,
                 'milesPerYear': car.milesPerYear,
                 'mpg': car.mpg,
+                'gasolineConsumed': gasolineConsumed,
+                'co2PerMile': co2_per_mile,
                 'co2Produced': total_co2  # You can choose to save co2_per_mile if needed
             }
             car_dicts.append(car_dict)
