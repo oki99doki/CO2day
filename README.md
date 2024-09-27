@@ -22,6 +22,8 @@ Inventory (list of activities and their associated CO2 footprints for reference)
 Examples by country - shows consumption (e.g. by country, etc.)
 Energy Saving Tips
 
+![WireframeHome](https://github.com/oki99doki/CO2day/blob/main/assets/WireframeHome.png)
+
 
 ## User Stories
 
