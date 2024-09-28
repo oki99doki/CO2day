@@ -194,7 +194,7 @@ select:focus {
 }
 
 .card {
-  max-width: 400px;
+  max-width: 800px;
   display: grid;
   grid-template-rows: auto 1fr auto;
   border: 2px solid var(--dark-turquoise);
@@ -270,4 +270,22 @@ select:focus {
 }
 a:hover {
   background-color: unset;
+}
+
+
+/* Added by Stefan */
+
+table {
+  width: 100%; /* Make the table full width */
+  border-collapse: collapse; /* Remove space between borders */
+  margin: 20px 0; /* Add some spacing around the table */
+  /* border: 1px solid #ddd; Add borders to cells */
+  border-collapse: collapse; /* Remove space between borders */
+  margin: 20px 0; /* Add some spacing around the table */
+}
+
+th, td {
+  padding: 12px; /* Add padding for better spacing */
+  text-align: center; /* Center align text */
+  border: 1px solid #ddd; /* Add borders to cells */
 }

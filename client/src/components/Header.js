@@ -9,7 +9,7 @@ function Header({ updateDarkMode, darkMode }) {
 		<header>
 			<h1>
 				<span className="logo">{"//"}</span>
-				Project Showcase
+				CO2Day
 			</h1>
 			<button onClick={updateDarkMode}>{darkMode ? "Light Mode" : "Dark Mode"}</button>
 			<NavLink to={'/'} className="button">
@@ -18,11 +18,11 @@ function Header({ updateDarkMode, darkMode }) {
 			<NavLink className="button" to={"/about"}>
 				About
 			</NavLink>
-			<NavLink className="button" to={"/new"}>
-				New Project
+			<NavLink className="button" to={"/houses"}>
+				Houses
 			</NavLink>
 			<NavLink className="button" to={"/users"}>
-				All Users
+				Users
 			</NavLink>
 		</header>
 	);

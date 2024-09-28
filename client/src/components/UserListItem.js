@@ -1,4 +1,4 @@
-import { FaPencilAlt, FaTrash } from "react-icons/fa";
+// import { FaPencilAlt, FaTrash } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -22,9 +22,9 @@ function UserListItem({ user }) {
 
 	return (
 		<li className="card">
-			<figure className="image">
+			{/* <figure className="image">
 				<img src={image} alt={name} />
-			</figure>
+			</figure> */}
 			<section className="details">
 			{/* ✅ 5a. Create a `NavLink` for each project that redirects to `ProjectDetails`.  */}
 			{/* ✅ - The link is to `/projects/:id` */}
@@ -32,13 +32,13 @@ function UserListItem({ user }) {
 				<NavLink to={`/users/${id}`}>
 					<h4>{name}</h4>
 				</NavLink>
-				<p>{about}</p>
+				{/* <p>{about}</p>
 				<p>
 					<a href={link}>Link</a>
-				</p>
+				</p> */}
 			</section>
 
-			<footer className="extra">
+			{/* <footer className="extra">
 				<span className="badge blue">Phase {phase}</span>
 				<div className="manage">
 					<button class="manage-button">
@@ -50,7 +50,7 @@ function UserListItem({ user }) {
 						<FaTrash />
 					</button>
 				</div>
-			</footer>
+			</footer> */}
 		</li>
 	);
 }

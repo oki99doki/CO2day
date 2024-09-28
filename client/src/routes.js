@@ -1,12 +1,13 @@
-import App from "./App";
+import App from './App';
 
 import HomePage from './components/HomePage';
 
 
-// import AboutPage
-// import UserPage
-// import UserDetails
-// import HousesPage
+import AboutPage from './components/AboutPage';
+import UserPage from './components/UserPage';
+import UserDetails from './components/UserDetails';
+import HousePage from './components/HousePage';
+// import HousesPage from from './components/AboutPage';
 // import CarsPage
 // import FlightsPage
 
@@ -42,18 +43,24 @@ const routes = [
 
         {
             path: "/houses",
-            element: <HousesPage />
+            element: <HousePage />
         },
 
-        {
-            path: "/cars",
-            element: <CarsPage />
-        },
 
-        {
-            path: "/flights",
-            element: <FlightsPage />
-        },
+        // {
+        //     path: "/houses/:id",
+        //     element: <HouseDetails />
+        // },
+
+        // {
+        //     path: "/cars",
+        //     element: <CarsPage />
+        // },
+
+        // {
+        //     path: "/flights",
+        //     element: <FlightsPage />
+        // },
     
     ]
     }

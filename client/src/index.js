@@ -18,8 +18,6 @@ import './index.css';
 const router = createBrowserRouter(routes)
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-RouterProvider.render(
+root.render(
     <RouterProvider router={router} />
 );
-
-// root.render(<App />);
