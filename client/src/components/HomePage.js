@@ -4,23 +4,28 @@ import { NavLink } from 'react-router-dom'
 
 import UserListItem from './UserListItem'
 
+// SK: added on 9/30 - for plotting data and creating graphs
+//import GraphComponent from './GraphComponent'
+import Plot from 'react-plotly.js'
+
 function HomePage() {
 
-  const [users, setUsers] = useState([])
-  
+  const [ users, setUsers ] = useState([])
+  const [graphData, setGraphData] = useState(null);
 
-  //✅ 9. Create homepage with top 5 liked projects.
   useEffect(() => {
-    //fetch('http://localhost:4000/projects?_sort=claps&_order=desc&_limit=5')
+    loadUsers()
+  }, []) 
+
+  const loadUsers = () => {
+    //fetch('http://localhost:4000/users')
     fetch('http://127.0.0.1:5555/users')
-    //fetch('http://127.0.0.1:5555/users?_sort=id&_limit=5')
     .then(res => res.json())
-    
-    .then(data => {
-      console.log(data);
-      setUsers(data);
-    });
-  }, []);
+    .then(data => setUsers(data.users))
+  }
+
+  //const [houses, setHouses] = useState([])
+
 
   return (
     <section className="box">
@@ -36,12 +41,43 @@ function HomePage() {
               View All Users
           </button>
         </NavLink>
+      
+        {/* <GraphComponent/> */}
+
+
+
         {/* console.log(users); */}
         {/* {
           users.map(el => <UserListItem user={el} key={el.id} />)
         } */}
 
     </div>
+
+
+    <div>
+            <h1>Users and CO2 Emissions</h1>
+            {users.length > 0 ? (
+                <ul>
+                    {users.map(user => (
+                        <li key={user.id}>
+                            {user.name}<br />
+                            CO2 from Electricity: {user.co2Produced_electricity.toFixed(1)} kg<br />
+                            CO2 from Gas: {user.co2Produced_gas.toFixed(1)} kg<br />
+                            CO2 from Gasoline: {user.co2Produced_gasoline.toFixed(1)} kg<br />
+                            CO2 from Flights: {user.co2Produced_flight.toFixed(1)} kg<br />
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p>No users found.</p>
+            )}
+            {graphData && (
+                <Plot
+                    data={graphData.data}
+                    layout={graphData.layout}
+                />
+            )}
+        </div>
 
     
 

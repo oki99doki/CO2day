@@ -16,7 +16,7 @@ function FlightListItem({ flight }) {
 				<td>{flight.name}</td>
 				<td>{flight.departure}</td>
 				<td>{flight.destination}</td>
-				<td>{flight.international ? 'True' : 'False'}</td>
+				<td>{flight.international ? 'Yes' : 'No'}</td>
 				<td>{flight.distance} mi</td>
 				<td>{flight.co2Produced.toFixed(1)} kg</td>
 			</tr>

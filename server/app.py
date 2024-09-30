@@ -9,6 +9,12 @@ from flask import Flask
 
 from flask import request, make_response
 
+# SK: added on 9/30 - for plotting data and creating graphs
+from flask import jsonify
+import plotly
+import plotly.graph_objs as go
+import json
+
 # SK: comment out 9/24 - this is in config.py
 # from flask_migrate import Migrate
 
@@ -48,7 +54,26 @@ def users():
 
         user_dicts = []
 
+        co2_by_source = []
+
         for user in all_users:
+
+
+            # Compute CO2 emissions
+            co2Produced_electricity = compute_electricityCo2Produced(
+                compute_electricityConsumed(user.house.electricityDollars, user.house.location.electricityCost)
+            )
+            
+            co2Produced_gas = compute_gasCo2Produced(
+                compute_gasConsumed(user.house.gasDollars, user.house.location.gasCost)
+            )
+            
+            co2Produced_gasoline = compute_co2_per_mile(user.car.mpg) * user.car.milesPerYear
+            
+            # # Assuming total_co2_flight is computed somehow
+            # total_co2_flight = sum(compute_co2_per_flight(flight) for flight in user.flights)
+
+
 
         #     total_co2_gasoline = 0
 
@@ -68,7 +93,10 @@ def users():
 
                 total_co2_flight += co2Produced
 
-            
+            co2Produced_flights = total_co2_flight
+
+
+
             # Create a dictionary for each user
             user_dict = {
                 'id': user.id,
@@ -88,9 +116,48 @@ def users():
                 'flight_id':  [flight.id for flight in user.flights],
                 'aircraft_id': [flight.aircraft_id for flight in user.flights]
 
-
             }
+
             user_dicts.append(user_dict)
+
+            #user_dicts.append(user_dict)
+
+            # Append CO2 data for graph
+            co2_by_source.append([
+                user.name,
+                co2Produced_electricity,
+                co2Produced_gas,
+                co2Produced_gasoline,
+                total_co2_flight
+            ])
+
+        # Prepare data for Plotly
+        if co2_by_source:
+            sources = ['Electricity', 'Gas', 'Gasoline', 'Flights']
+            user_names = [data[0] for data in co2_by_source]
+            co2_values = [data[1:] for data in co2_by_source]
+
+            # Create a bar chart
+            graph = go.Figure()
+            for i, source in enumerate(sources):
+                graph.add_trace(go.Bar(
+                    x=user_names,
+                    y=[values[i] for values in co2_values],
+                    name=source
+                ))
+
+            graph.update_layout(
+                title='CO2 Emissions by Source for Each User',
+                xaxis_title='Users',
+                yaxis_title='CO2 Produced (kg)',
+                barmode='stack'
+            )
+
+            graph_json = json.dumps(graph, cls=plotly.utils.PlotlyJSONEncoder)
+
+        else:
+            graph_json = None
+
 
         body = {'users': user_dicts}  # List of all car dictionaries
         status = 200
@@ -366,6 +433,20 @@ def aircrafts():
 
 
 
+# SK: added on 9/30 - for plotting data and creating graphs
+@app.route('/houses/graph-data')
+def graph_data():
+    # Example data
+    x = [1, 2, 3, 4]
+    y = [10, 15, 13, 17]
+    graph = go.Figure(data=go.Scatter(x=x, y=y, mode='lines+markers'))
+    graph_json = json.dumps(graph, cls=plotly.utils.PlotlyJSONEncoder)
+    return jsonify(graph_json)
+
+
+
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
+
+
 
