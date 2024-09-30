@@ -4,26 +4,24 @@ import { useNavigate } from "react-router-dom";
 
 // ✅ 5. Update `ProjectListItem`
 // ✅ 6. Manage delete project.
-function CarListItem({ car }) {
+function FlightListItem({ flight }) {
 	//let { id, name, about, image, claps, link, phase } = user; // TO-DO: adapt this line with corresponding elements on left side
     //let { id, style } = house;
 	const navigate = useNavigate();
-
-
+	
 	return (
 		        
-			<tr key={car.id}>
-				<td>{car.id}</td>
-				<td>{car.make}</td>
-				<td>{car.model}</td>
-				<td>{car.year}</td>
-				<td>{car.mpg}</td>
-				<td>{car.milesPerYear}</td>
-				<td>{car.gasolineConsumed.toFixed(1)}</td>
-				<td>{car.co2Produced.toFixed(1)} kg</td>
+			<tr flight={flight.id}>
+				<td>{flight.id}</td>
+				<td>{flight.name}</td>
+				<td>{flight.departure}</td>
+				<td>{flight.destination}</td>
+				<td>{flight.international ? 'True' : 'False'}</td>
+				<td>{flight.distance} mi</td>
+				<td>{flight.co2Produced.toFixed(1)} kg</td>
 			</tr>
 
  	);
 }
 
-export default CarListItem;
+export default FlightListItem;

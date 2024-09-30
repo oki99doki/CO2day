@@ -32,6 +32,10 @@ function Header({ updateDarkMode, darkMode }) {
 			<NavLink className="button" to={"/cars"}>
 				Cars
 			</NavLink>
+
+			<NavLink className="button" to={"/flights"}>
+				Flights
+			</NavLink>
 			
 		</header>
 	);
