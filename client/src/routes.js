@@ -8,7 +8,7 @@ import UserPage from './components/UserPage';
 import UserDetails from './components/UserDetails';
 import HousePage from './components/HousePage';
 // import HousesPage from from './components/AboutPage';
-// import CarsPage
+import CarPage from './components/CarPage';
 // import FlightsPage
 
 
@@ -52,10 +52,10 @@ const routes = [
         //     element: <HouseDetails />
         // },
 
-        // {
-        //     path: "/cars",
-        //     element: <CarsPage />
-        // },
+        {
+            path: "/cars",
+            element: <CarPage />
+        }
 
         // {
         //     path: "/flights",

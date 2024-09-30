@@ -36,7 +36,7 @@ function HomePage() {
               View All Users
           </button>
         </NavLink>
-        console.log(users);
+        {/* console.log(users); */}
         {/* {
           users.map(el => <UserListItem user={el} key={el.id} />)
         } */}

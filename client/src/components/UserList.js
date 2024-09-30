@@ -21,32 +21,44 @@ function UserList({ users }) {
 
 	return (
 		<section>
-			<h2>User List</h2>
-			<div className="filter">
+			
+			{/* <div className="filter"> */}
 				{/* <button onClick={() => setPhase(0)}>All</button> */}
 				{/* <button onClick={() => setPhase(5)}>Phase 5</button>
 				<button onClick={() => setPhase(4)}>Phase 4</button>
 				<button onClick={() => setPhase(3)}>Phase 3</button>
 				<button onClick={() => setPhase(2)}>Phase 2</button>
 				<button onClick={() => setPhase(1)}>Phase 1</button> */}
-				<p>blabla    </p>
-			</div>
-			{/* <input
-				type="text"
-				placeholder="Search..."
-				name="search"
-				value={searchQuery}
-				onChange={(e) => setSearchQuery(e.target.value)}
-			/> */}
-			<ul className="cards">
-				{/* {filteredUsers.map((user) => ( */}
-				{users.map((user) => (
+				{/* <p>blabla    </p> */}
+			{/* </div> */}
+
+
+
+			<table className="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						{/* <th>Size</th>
+						<th>Electricity Cost</th>
+						<th>Gas Cost</th>
+						<th>Electricity CO2</th>
+						<th>Gas CO2</th> */}
+					</tr>
+				</thead>
+				<tbody>
 					
-					
+				{users.map((user)=> (
+
 					<UserListItem key={user.id} user={user} />
-					// <p> Test blabla ... </p>
 				))}
-			</ul>
+		
+				</tbody>
+			</table>
+			
+			
+
+
 		</section>
 	);
 }

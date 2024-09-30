@@ -12,18 +12,27 @@ function Header({ updateDarkMode, darkMode }) {
 				CO2Day
 			</h1>
 			<button onClick={updateDarkMode}>{darkMode ? "Light Mode" : "Dark Mode"}</button>
+			
 			<NavLink to={'/'} className="button">
 				Home
 			</NavLink>
+			
 			<NavLink className="button" to={"/about"}>
 				About
 			</NavLink>
-			<NavLink className="button" to={"/houses"}>
-				Houses
-			</NavLink>
+			
 			<NavLink className="button" to={"/users"}>
 				Users
 			</NavLink>
+			
+			<NavLink className="button" to={"/houses"}>
+				Houses
+			</NavLink>
+			
+			<NavLink className="button" to={"/cars"}>
+				Cars
+			</NavLink>
+			
 		</header>
 	);
 }
