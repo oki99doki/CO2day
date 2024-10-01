@@ -131,44 +131,44 @@ def users():
                 total_co2_flight
             ])
 
-        # # Prepare data for Plotly
-        # if co2_by_source:
-        #     sources = ['Electricity', 'Gas', 'Gasoline', 'Flights']
-        #     user_names = [data[0] for data in co2_by_source]
-        #     co2_values = [data[1:] for data in co2_by_source]
+        # Prepare data for Plotly
+        if co2_by_source:
+            sources = ['Electricity', 'Gas', 'Gasoline', 'Flights']
+            user_names = [data[0] for data in co2_by_source]
+            co2_values = [data[1:] for data in co2_by_source]
 
 
-        #     #graph = go.Figure(data=go.Scatter(x=x, y=y, mode='lines+markers'))
-        #     #graph_json = json.dumps(graph, cls=plotly.utils.PlotlyJSONEncoder)
-        #     #return jsonify(graph_json)
+            #graph = go.Figure(data=go.Scatter(x=x, y=y, mode='lines+markers'))
+            #graph_json = json.dumps(graph, cls=plotly.utils.PlotlyJSONEncoder)
+            #return jsonify(graph_json)
 
-        #     # Create a bar chart
-        #     graph = go.Figure()
-        #     #ipdb.set_trace()
-        #     for i, source in enumerate(sources):
-        #         graph.add_trace(go.Bar(
-        #             x=user_names,
-        #             y=[values[i] for values in co2_values],
-        #             name=source
-        #         ))
+            # Create a bar chart
+            graph = go.Figure()
+            #ipdb.set_trace()
+            for i, source in enumerate(sources):
+                graph.add_trace(go.Bar(
+                    x=user_names,
+                    y=[values[i] for values in co2_values],
+                    name=source
+                ))
 
-        #     #ipdb.set_trace()
-        #     graph.update_layout(
-        #         title='CO2 Emissions by Source for Each User',
-        #         xaxis_title='Users',
-        #         yaxis_title='CO2 Produced (kg)',
-        #         barmode='stack'
-        #     )
-        #     #ipdb.set_trace()
-        #     graph_json = json.dumps(graph, cls=plotly.utils.PlotlyJSONEncoder)
+            #ipdb.set_trace()
+            graph.update_layout(
+                title='CO2 Emissions by Source for Each User',
+                xaxis_title='Users',
+                yaxis_title='CO2 Produced (kg)',
+                barmode='stack'
+            )
+            #ipdb.set_trace()
+            graph_json = json.dumps(graph, cls=plotly.utils.PlotlyJSONEncoder)
 
-        #     return jsonify(graph_json)
+            # return jsonify(graph_json)
 
-        # else:
-        #     graph_json = None
+        else:
+            graph_json = None
 
 
-        body = {'users': user_dicts}  # List of all car dictionaries
+        body = {'users': user_dicts, 'graph': graph_json}  # List of all car dictionaries
         status = 200
     else:
         body = {'message': 'No users found.'}
@@ -443,7 +443,17 @@ def aircrafts():
 
 
 # SK: added on 9/30 - for plotting data and creating graphs
-@app.route('/houses/graph-data')
+# @app.route('/houses/graph-data')
+# def graph_data():
+#     # Example data
+#     x = [1, 2, 3, 4]
+#     y = [10, 15, 13, 17]
+#     graph = go.Figure(data=go.Scatter(x=x, y=y, mode='lines+markers'))
+#     graph_json = json.dumps(graph, cls=plotly.utils.PlotlyJSONEncoder)
+#     return jsonify(graph_json)
+
+
+@app.route('/users/graph-data')
 def graph_data():
     # Example data
     x = [1, 2, 3, 4]

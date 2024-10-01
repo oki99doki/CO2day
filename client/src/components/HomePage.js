@@ -222,12 +222,12 @@ function HomePage() {
 
 
 
-            {/* {graphData && (
+            {graphData && (
                 <Plot
                     data={graphData.data}
                     layout={graphData.layout}
                 />
-            )} */}
+            )}
 
             {/* {graphData ? (
                 <Plot
