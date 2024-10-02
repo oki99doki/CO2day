@@ -61,7 +61,6 @@ def users():
 
         for user in all_users:
 
-
             # Compute CO2 emissions
             co2Produced_electricity = compute_electricityCo2Produced(
                 compute_electricityConsumed(user.house.electricityDollars, user.house.location.electricityCost)
@@ -75,7 +74,6 @@ def users():
             
             # # Assuming total_co2_flight is computed somehow
             # total_co2_flight = sum(compute_co2_per_flight(flight) for flight in user.flights)
-
 
 
         #     total_co2_gasoline = 0
@@ -99,7 +97,6 @@ def users():
             co2Produced_flights = total_co2_flight
 
 
-
             # Create a dictionary for each user
             user_dict = {
                 'id': user.id,
@@ -109,8 +106,7 @@ def users():
                 'co2Produced_gas': compute_gasCo2Produced(compute_gasConsumed(user.house.gasDollars, user.house.location.gasCost)),
 
                 'co2Produced_gasoline': compute_co2_per_mile(user.car.mpg) * user.car.milesPerYear,
-                # 'co2Produced_gasoline': total_co2_gasoline,
-
+                
                 'house_id': user.house.id,
                 'location_id': user.house.location_id,
                 
@@ -122,9 +118,7 @@ def users():
             }
 
             user_dicts.append(user_dict)
-
-            #user_dicts.append(user_dict)
-
+        
             # Append CO2 data for graph
             co2_by_source.append([
                 user.name,
@@ -141,39 +135,33 @@ def users():
             co2_values = [data[1:] for data in co2_by_source]
 
 
-            #graph = go.Figure(data=go.Scatter(x=x, y=y, mode='lines+markers'))
-            #graph_json = json.dumps(graph, cls=plotly.utils.PlotlyJSONEncoder)
-            #return jsonify(graph_json)
-
             # Create a bar chart
             graph = go.Figure()
-            #ipdb.set_trace()
+            
             for i, source in enumerate(sources):
                 graph.add_trace(go.Bar(
                     x=user_names,
                     y=[values[i] for values in co2_values],
                     name=source
                 ))
-
-            #ipdb.set_trace()
+     
             graph.update_layout(
                 title='CO2 Emissions by Source for Each User',
                 xaxis_title='Users',
                 yaxis_title='CO2 Produced (kg)',
                 barmode='stack'
             )
-            #ipdb.set_trace()
+            
             graph_json = json.dumps(graph, cls=plotly.utils.PlotlyJSONEncoder)
-
-            # return jsonify(graph_json)
 
         else:
             graph_json = None
 
-
         body = {'users': user_dicts, 'graph': graph_json}  # List of all car dictionaries
         status = 200
+
     else:
+
         body = {'message': 'No users found.'}
         status = 404
 
@@ -200,11 +188,14 @@ def locations():
                 'gasCost': location.gasCost,
                 'gasolineCost': location.gasolineCost,
             }
+
             location_dicts.append(location_dict)
 
         body = {'locations': location_dicts}  # List of all car dictionaries
         status = 200
+
     else:
+
         body = {'message': 'No locations found.'}
         status = 404
 
@@ -248,7 +239,9 @@ def cars():
 
         body = {'cars': car_dicts}  # List of all car dictionaries
         status = 200
+
     else:
+
         body = {'message': 'No cars found.'}
         status = 404
 
@@ -310,7 +303,9 @@ def houses():
 
         body = {'houses': house_dicts}  # List of all car dictionaries
         status = 200
+
     else:
+
         body = {'message': 'No houses found.'}
         status = 404
 
@@ -334,30 +329,6 @@ def compute_gasCo2Produced(gasConsumed):
     gasCo2Produced = gasConsumed * 54.44
     return gasCo2Produced
 
-
-#((house.electricity_dollars * 12) / location.electricty_cost ) * 0.369 = cotwo_per_house
-# @app.route('/extra_special_calc/<int:user_id>')
-# def calculate_yearly_house_co2():
-#     # query for all data necessary
-
-#     # calculate final numbers
-
-#     # send back final numbers
-#     return make_response({
-#         "final_calc": amount,
-#         "house_id": house.id,
-#         "location": location.to_dict(),
-#         "anything_else": "no"
-#     }, 200)
-
-
-# @app.route('/house', methods=["POST"])
-# def create_house():
-#     data = request.get_json()
-
-    #create intermediary results
-
-    #commit all info including intermediary results to db 
 
 
 
@@ -414,7 +385,9 @@ def flights():
 
         body = {'flights': flight_dicts}  # List of all flight dictionaries
         status = 200
+
     else:
+
         body = {'message': 'No flights found.'}
         status = 404
 
@@ -487,6 +460,7 @@ def update_flight(flight_id):
         flight.aircraft_id = data.get('aircraft_id', flight.aircraft_id)
 
         db.session.commit()
+
         return jsonify({'message': 'Flight updated successfully.'})
 
     return make_response({'message': 'Flight not found.'}, 404)
@@ -500,6 +474,7 @@ def delete_flight(flight_id):
     if flight:
         db.session.delete(flight)
         db.session.commit()
+
         return jsonify({'message': 'Flight deleted successfully.'})
 
     return make_response({'message': 'Flight not found.'}, 404)
@@ -529,7 +504,9 @@ def aircrafts():
 
         body = {'aircrafts': aircraft_dicts}  # List of all flight dictionaries
         status = 200
+
     else:
+        
         body = {'message': 'No faircrafts found.'}
         status = 404
 
