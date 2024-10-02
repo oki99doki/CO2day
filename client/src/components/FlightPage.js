@@ -7,7 +7,7 @@ import EditFlight from './EditFlight'; // Create this component
 
 function FlightPage() {
 
-  const [ flights, setFlights ] = useState([])
+  const [flights, setFlights] = useState([])
   const [users, setUsers] = useState([]);
   const [aircrafts, setAircrafts] = useState([]);
   const [editingFlight, setEditingFlight] = useState(null);
