@@ -112,9 +112,8 @@ https://trello.com/b/WCN6PLp7/phase-v-kanban
 
 ## Resources
 
-Placeholder for now.
-
-- xxx
-- [Create a repo- GitHub Docs](https://docs.github.com/en/get-started/quickstart/create-a-repo)
-- [Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet/)
-- xxx
+- [EPA Carbon Footprint Tool](https://www3.epa.gov/carbon-footprint-calculator/)
+- [Greenly Carbon Footprint Tool](https://www.carbonfootprint.com/calculator.aspx)
+- [USA Today - Electricity rates by state (October 2024)](https://www.usatoday.com/money/homefront/deregulated-energy/electricity-rates-by-state/)
+- [Choose Energy - Natural Gas Rates by State](https://www.chooseenergy.com/data-center/natural-gas-rates-by-state/)
+- [AAA - Gas Prices by State](https://gasprices.aaa.com/)
