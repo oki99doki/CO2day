@@ -38,6 +38,8 @@ import ipdb
 
 
 
+
+
 # Views go here!
 
 @app.route('/')
@@ -358,6 +360,19 @@ def compute_gasCo2Produced(gasConsumed):
 
 
 
+#                 FULL CRUD ON FLIGHTS
+# 
+# | HTTP Verb     |      Path       | Description         |
+# |-------------  |:---------------:|-------------------  |
+# | GET           |    /flights     | READ all flights    |
+# | POST          |    /flights     | CREATE one flight   |
+# | GET           |  /flights/:id   | READ one flight     |
+# | PATCH         |  /flights/:id   | UPDATE one flight   |
+# | DELETE        |  /flights/:id   | DELETE one flight   |
+
+
+
+# GET 
 @app.route('/flights')
 def flights():
 
@@ -408,6 +423,85 @@ def flights():
 def compute_aircraftGallonsConsumed(distance, gallonsPer100Pass, seats):
     aircraftGallonsConsumed = (2 * distance) * gallonsPer100Pass * (seats/100)
     return aircraftGallonsConsumed
+
+
+
+# Read a Single FLight (GET)
+@app.route('/flights/<int:flight_id>', methods=['GET'])
+def flight_by_id(flight_id):
+    flight = Flight.query.get(flight_id)
+    
+    if flight:
+        return jsonify({
+            'id': flight.id,
+            'name': flight.number,
+            'departure': flight.departure,
+            'destination': flight.destination,
+            'international': flight.international,
+            'distance': flight.distance,
+            'co2Produced': compute_aircraftGallonsConsumed(flight.distance, flight.aircraft.gallonsPer100Pass, flight.aircraft.seats) / flight.aircraft.seats,
+            'user_id': flight.user_id,
+            'aircraft_id': flight.aircraft_id
+        })
+    
+    return make_response({'message': 'Flight not found.'}, 404)
+
+
+
+# Create a FLight (POST)
+@app.route('/flights', methods = ['POST'])
+def create_flights():
+
+    data = request.get_json()
+
+    new_flight = Flight(
+        number=data['name'],
+        departure=data['departure'],
+        destination=data['destination'],
+        international=data['international'],
+        distance=data['distance'],
+        user_id=data['user_id'],
+        aircraft_id=data['aircraft_id']
+    )
+
+    db.session.add(new_flight)
+    db.session.commit()
+    
+    return make_response(jsonify({'id': new_flight.id}), 201)
+
+
+# Update a Flight (PUT)
+@app.route('/flights/<int:flight_id>', methods=['PUT'])
+def update_flight(flight_id):
+    flight = Flight.query.get(flight_id)
+    
+    if flight:
+        data = request.get_json()
+        flight.number = data.get('name', flight.number)
+        flight.departure = data.get('departure', flight.departure)
+        flight.destination = data.get('destination', flight.destination)
+        flight.international = data.get('international', flight.international)
+        flight.distance = data.get('distance', flight.distance)
+        flight.user_id = data.get('user_id', flight.user_id)
+        flight.aircraft_id = data.get('aircraft_id', flight.aircraft_id)
+
+        db.session.commit()
+        return jsonify({'message': 'Flight updated successfully.'})
+
+    return make_response({'message': 'Flight not found.'}, 404)
+
+
+# Delete a FLight (DELETE)
+@app.route('/flights/<int:flight_id>', methods=['DELETE'])
+def delete_flight(flight_id):
+    flight = Flight.query.get(flight_id)
+    
+    if flight:
+        db.session.delete(flight)
+        db.session.commit()
+        return jsonify({'message': 'Flight deleted successfully.'})
+
+    return make_response({'message': 'Flight not found.'}, 404)
 
 
 

@@ -6,8 +6,8 @@ import FlightList from './FlightList'
 
 function FlightPage() {
 
-
   const [ flights, setFlights ] = useState([])
+  // const [editingFlight, setEditingFlight] = useState(null);
 
   useEffect(() => {
     loadFlights()
@@ -18,6 +18,20 @@ function FlightPage() {
     .then(res => res.json())
     .then(data => setFlights(data.flights))
   }
+
+  const handleDelete = async (id) => {
+    await fetch(`http://127.0.0.1:5555/flights/${id}`, { method: 'DELETE' });
+    setFlights(flights.filter(flight => flight.id !== id));
+  };
+
+  // const handleEdit = (flight) => {
+  //   setEditingFlight(flight);
+  // };
+
+  // const handleCreateOrUpdate = () => {
+  //   setEditingFlight(null); // Clear editing state after create/update
+  //   loadFlights(); // Reload flights to reflect changes
+  // };
 
   
  
@@ -35,7 +49,10 @@ function FlightPage() {
 
       {/* <HouseList houses={houses} /> */}
       <h1>Flights</h1>
-      <FlightList flights={flights} />
+      {/* <FlightList flights={flights} /> */}
+      <FlightList flights={flights} onDelete={handleDelete} onEdit={handleEdit} />
+
+
   
         {/* console.log(houses); */}
         {/* {

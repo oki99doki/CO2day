@@ -6,7 +6,7 @@ import UserList from './UserList'
 function UserPage() {
 
   const [ users, setUsers ] = useState([])
-  const [ graphData, setGraphData ] = useState(null);
+  //const [ graphData, setGraphData ] = useState(null);
 
   useEffect(() => {
     loadUsers()

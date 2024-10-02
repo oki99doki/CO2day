@@ -1,7 +1,9 @@
 import { useState } from "react";
 import FlightListItem from "./FlightListItem";
 
-function FlightList({ flights }) {
+// function FlightList({ flights }) {
+
+function FlightList({ flights, onDelete, onEdit }) {
 	
 	return (
 		<section>
@@ -22,7 +24,8 @@ function FlightList({ flights }) {
 					
 				{flights.map((flight)=> (
 
-					<FlightListItem key={flight.id} flight={flight} />
+					// <FlightListItem key={flight.id} flight={flight} />
+					<FlightListItem key={flight.id} flight={flight} onDelete={onDelete} onEdit={onEdit} />
 				))}
 		
 				</tbody>
