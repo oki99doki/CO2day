@@ -444,7 +444,7 @@ def create_flights():
     return make_response(jsonify({'id': new_flight.id}), 201)
 
 
-# Update a Flight (PUT)
+# Update a Flight (PATCH)
 @app.route('/flights/<int:flight_id>', methods=['PUT'])
 def update_flight(flight_id):
     flight = Flight.query.get(flight_id)
@@ -506,7 +506,7 @@ def aircrafts():
         status = 200
 
     else:
-        
+
         body = {'message': 'No faircrafts found.'}
         status = 404
 
