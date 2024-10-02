@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function CreateFlight({ onCreate }) {
+function CreateFlight({ users, aircrafts, onCreate }) {
   const [flight, setFlight] = useState({
     name: '',
     departure: '',
@@ -42,6 +42,23 @@ function CreateFlight({ onCreate }) {
         <input type="checkbox" name="international" checked={flight.international} onChange={handleChange} />
       </label>
       <input type="number" name="distance" value={flight.distance} onChange={handleChange} placeholder="Distance" required />
+      
+      {/* User Dropdown */}
+      <select name="user_id" value={flight.user_id} onChange={handleChange} required>
+        <option value="">Select User</option>
+        {users.map(user => (
+          <option key={user.id} value={user.id}>{user.name}</option>
+        ))}
+      </select>
+      
+      {/* Aircraft Dropdown */}
+      <select name="aircraft_id" value={flight.aircraft_id} onChange={handleChange} required>
+        <option value="">Select Aircraft</option>
+        {aircrafts.map(aircraft => (
+          <option key={aircraft.id} value={aircraft.id}>{aircraft.name}</option>
+        ))}
+      </select>
+
       <button type="submit">Create Flight</button>
     </form>
   );

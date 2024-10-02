@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function EditFlight({ flight, onUpdate }) {
+function EditFlight({ flight, users, aircrafts, onUpdate }) {
   const [editedFlight, setEditedFlight] = useState(flight);
 
   useEffect(() => {
@@ -37,6 +37,21 @@ function EditFlight({ flight, onUpdate }) {
         <input type="checkbox" name="international" checked={editedFlight.international} onChange={handleChange} />
       </label>
       <input type="number" name="distance" value={editedFlight.distance} onChange={handleChange} required />
+
+      {/* User Dropdown */}
+      <select name="user_id" value={editedFlight.user_id} onChange={handleChange} required>
+        {users.map(user => (
+          <option key={user.id} value={user.id}>{user.name}</option>
+        ))}
+      </select>
+      
+      {/* Aircraft Dropdown */}
+      <select name="aircraft_id" value={editedFlight.aircraft_id} onChange={handleChange} required>
+        {aircrafts.map(aircraft => (
+          <option key={aircraft.id} value={aircraft.id}>{aircraft.name}</option>
+        ))}
+      </select>
+
       <button type="submit">Update Flight</button>
     </form>
   );

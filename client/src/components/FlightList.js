@@ -12,12 +12,13 @@ function FlightList({ flights, onDelete, onEdit }) {
 				<thead>
 					<tr>
 						<th>ID</th>
-						<th>Number</th>
+						<th>Name</th>
 						<th>Departure</th>
 						<th>Destination</th>
-						<th>International ?</th>
+						<th>International</th>
 						<th>Distance</th>
-						<th>CO2 Produced</th>						
+						<th>CO2 Produced</th>
+						<th>Actions</th>					
 					</tr>
 				</thead>
 				<tbody>

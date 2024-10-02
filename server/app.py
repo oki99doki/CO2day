@@ -8,6 +8,7 @@ from flask import Flask
 # REMOTE LIBRARY IMPORTS
 
 from flask import request, make_response
+from sqlalchemy.orm import joinedload
 
 # SK: added on 9/30 - for plotting data and creating graphs
 from flask import jsonify
@@ -376,40 +377,40 @@ def compute_gasCo2Produced(gasConsumed):
 @app.route('/flights')
 def flights():
 
-    all_flights = Flight.query.all()
+    all_flights = Flight.query.options(joinedload(Flight.aircraft)).all()
 
     if all_flights:
-
         flight_dicts = []
-
         for flight in all_flights:
-            
-            
-            aircraftGallonsConsumed = compute_aircraftGallonsConsumed(flight.distance, flight.aircraft.gallonsPer100Pass, flight.aircraft.seats) # Gallons consumed for aircraft for flight
+            if flight.aircraft:  # Check if aircraft is not None
+                aircraftGallonsConsumed = compute_aircraftGallonsConsumed(
+                    flight.distance,
+                    flight.aircraft.gallonsPer100Pass,
+                    flight.aircraft.seats
+                )
+                aircraftCo2Produced = 10 * aircraftGallonsConsumed # CO2 produced for aircraft for flight
 
-            aircraftCo2Produced = 10 * aircraftGallonsConsumed # CO2 produced for aircraft for flight
-
-            co2Produced = aircraftCo2Produced / flight.aircraft.seats # CO2 produced for aircraft for flight
+                co2Produced = aircraftCo2Produced / flight.aircraft.seats # CO2 produced for aircraft for flight
         
             # CO2 produced per flight and passenger in kg CO2
-            aircraftCo2Produced
+                aircraftCo2Produced
 
-            # Create a dictionary for each flight
-            flight_dict = {
-                'id': flight.id,
-                'name': flight.number,
-                'departure': flight.departure,
-                'destination': flight.destination,
-                'international': flight.international,
+                # Create a dictionary for each flight
+                flight_dict = {
+                    'id': flight.id,
+                    'name': flight.number,
+                    'departure': flight.departure,
+                    'destination': flight.destination,
+                    'international': flight.international,
 
-                'distance': flight.distance,
-                #'co2Produced': flight.co2Produced, - commented out: this is old constant value still in seed.py of 1000
-                'co2Produced': co2Produced,
+                    'distance': flight.distance,
+                    #'co2Produced': flight.co2Produced, - commented out: this is old constant value still in seed.py of 1000
+                    'co2Produced': co2Produced,
 
-                'user_id': flight.user_id,
-                'aircraft_id': flight.aircraft_id
-            }
-            flight_dicts.append(flight_dict)
+                    'user_id': flight.user_id,
+                    'aircraft_id': flight.aircraft_id
+                }
+                flight_dicts.append(flight_dict)
 
         body = {'flights': flight_dicts}  # List of all flight dictionaries
         status = 200
