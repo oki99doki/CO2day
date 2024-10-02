@@ -63,14 +63,6 @@ Energy Saving Tips
 **User Routes**
 
     GET /users: Retrieve a list of all users.
-    
-    POST /users: Create a new user.
-    
-    GET /users/<id>: Retrieve a specific user by ID.
-    
-    PATCH /users/<id>: Partially update a specific user by ID.
-    
-    DELETE /users/<id>: Delete a specific user by ID.
 
 **Location Routes**
     
@@ -79,22 +71,10 @@ Energy Saving Tips
 **Car Routes**
     
     GET /cars: Retrieve a list of all cars.
-    
-    POST /cars: Create a new car.
-    
-    GET /cars/<id>: Retrieve a specific car by ID.
-    
-    DELETE /cars/<id>: Delete a specific car by ID.
 
 **House Routes**
     
     GET /houses: Retrieve a list of all houses.
-
-    POST /houses: Create a new house.
-    
-    GET /houses/<id>: Retrieve a specific house by ID.
-    
-    DELETE /houses/<id>: Delete a specific house by ID.
 
 **Flight Routes**
     
@@ -103,6 +83,8 @@ Energy Saving Tips
     POST /flights: Create a new flight.
     
     GET /flights/<id>: Retrieve a specific flight by ID.
+
+    PATCH /flights/<id>: Update a specific flight by ID.
     
     DELETE /flights/<id>: Delete a specific flight by ID.
 
