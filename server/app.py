@@ -71,21 +71,12 @@ def users():
             )
             
             co2Produced_gasoline = compute_co2_per_mile(user.car.mpg) * user.car.milesPerYear
-            
-            # # Assuming total_co2_flight is computed somehow
-            # total_co2_flight = sum(compute_co2_per_flight(flight) for flight in user.flights)
-
-
-        #     total_co2_gasoline = 0
-
-        #     for car in user.car:
-        #         total_co2_gasoline += compute_co2_per_mile(user.car.mpg) * user.car.milesPerYear
+                        
 
             total_co2_flight = 0
 
             for flight in user.flights:
 
-                #ipdb.set_trace()
                 aircraftGallonsConsumed = compute_aircraftGallonsConsumed(flight.distance, flight.aircraft.gallonsPer100Pass, flight.aircraft.seats) # Gallons consumed for aircraft for flight
 
                 aircraftCo2Produced = 10 * aircraftGallonsConsumed # CO2 produced for aircraft for flight
@@ -525,14 +516,14 @@ def aircrafts():
 #     return jsonify(graph_json)
 
 
-@app.route('/users/graph-data')
-def graph_data():
-    # Example data
-    x = [1, 2, 3, 4]
-    y = [10, 15, 13, 17]
-    graph = go.Figure(data=go.Scatter(x=x, y=y, mode='lines+markers'))
-    graph_json = json.dumps(graph, cls=plotly.utils.PlotlyJSONEncoder)
-    return jsonify(graph_json)
+# @app.route('/users/graph-data')
+# def graph_data():
+#     # Example data
+#     x = [1, 2, 3, 4]
+#     y = [10, 15, 13, 17]
+#     graph = go.Figure(data=go.Scatter(x=x, y=y, mode='lines+markers'))
+#     graph_json = json.dumps(graph, cls=plotly.utils.PlotlyJSONEncoder)
+#     return jsonify(graph_json)
 
 
 
